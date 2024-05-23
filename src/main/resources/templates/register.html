@@ -37,6 +37,9 @@
                         	
                         	<div class="form-box">
                         		<div class="form-top">
+                                            <div class="message" th:if="${message != null}">
+                                                [[${message}]]
+                                            </div>
 	                        		<div class="form-top-left">
 	                        			<h3>Regístrate ahora</h3>
 	                            		<p>Complete el formulario para obtener acceso instantáneo:</p>

@@ -244,13 +244,18 @@
     </div>
   </header>
   <nav id="menu">
-    <h2>¡Bienvenido (nombre usuario)!</h2>
+    <h2>¡Bienvenido [[${user.getUsuario()}]]!</h2>
     <a href="#"><img src="" alt="">foto</a>
     <ul>
       <li><a href="#">Iniciar Sesión</a></li>
       <li><a href="#">Sobre Nosotros</a></li>
       <!-- Agrega más opciones de menú según sea necesario -->
     </ul>
+    <span sec:authorize="isAuthenticated">
+        <a th:href="@{/logout}">
+         Logout
+        
+        </a>
   </nav>
   <button class="menu-btn" onclick="toggleMenu()">
     <i class="fa-solid fa-bars"></i>

@@ -24,7 +24,7 @@ public class User {
         this.usuario = usuario;
         this.password = password;
         this.correo = correo;
-        this.roles = roles;
+        this.roles = "USER";
     }
 
     public String getRoles() {
