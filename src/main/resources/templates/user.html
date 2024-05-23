@@ -346,14 +346,10 @@
         const title = card.querySelector('.card-content h3').textContent;
 
         // Redirect to the corresponding page based on the title
-        if (title === 'Admin') {
-          window.location.href = 'admin.html'; // Replace with your admin page URL
-        } else if (title === 'Teacher') {
-          window.location.href = 'teacher.html'; // Replace with your teacher page URL
-        } else if (title === 'Student') {
-          window.location.href = 'student.html'; // Replace with your student page URL
-        } else if (title === 'Funcionalidades contratadas') {
-          window.location.href = 'representative.html'; // Replace with your representative page URL
+        if (title === 'Funcionalidades') {
+          window.location.href = 'funcionalidades.html'; // Replace with your representative page URL
+        } else if (title === 'Incidencias') {
+          window.location.href = 'incidencias.html'; // Replace with your representative page URL
         }
       });
     });
