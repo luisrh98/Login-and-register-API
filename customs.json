@@ -1,0 +1,14 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:if": {
+            "context": "div"
+        },
+        "th:action": {
+            "context": "form"
+        },
+        "th:field": {
+            "context": "input"
+        }
+    }
+}

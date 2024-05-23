@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de tu página</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* Para deshabilitar el desbordamiento horizontal */
+            width: 100%;
+            /* Para que ocupe todo el ancho del navegador */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* Para que el cuerpo ocupe al menos el 100% de la altura de la ventana del navegador */
+        }
+
+        header {
+            background-color: #005571;
+            color: #fff;
+            text-align: center;
+            /* Centrado del texto */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Alineación horizontal */
+            height: 10vh;
+            /* Altura del 10% de la ventana */
+            padding-left: 5%;
+            padding-right: 5%;
+            /* Añadido para el margen derecho */
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        header h1 {
+            font-size: 15px;
+        }
+
+        .social {
+            align-items: center;
+            /* Alinear elementos verticalmente */
+            vertical-align: middle;
+        }
+
+        .social-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .social a {
+            color: #fff;
+            /* Color de ícono predeterminado */
+            margin-right: 6px;
+            /* Espacio entre los iconos */
+            transition: color 0.5s;
+            /* Transición de color */
+        }
+
+        .social a i:hover {
+            color: #0087b4;
+            /* Cambio de color al pasar el cursor */
+        }
+
+        .fa-youtube,
+        .fa-twitter,
+        .fa-instagram,
+        .fa-linkedin,
+        .fa-facebook {
+            padding: 5px;
+            color: #fff;
+            border: 2px solid rgb(255, 255, 255);
+            /* Borde de 2px sólido negro */
+            border-radius: 100px;
+
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: -20%;
+            /* Inicialmente oculto */
+            width: 20%;
+            height: 100%;
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: left;
+            /* Alineación de texto a la izquierda */
+            transition: left 0.5s;
+            /* Añadido para la transición de animación */
+        }
+
+        #menu ul{
+            list-style: none;
+            align-items: center;
+        }
+
+        #menu ul li{
+            align-items: center;
+            text-align: center;
+            padding: 12px;
+            box-shadow: 0 0 3px;
+        }
+
+        .main-content {
+            width: 100%;
+            box-shadow: 0 0 3px;
+            display: flex;
+            /* Mostrar los elementos internos como una fila */
+            flex: 1;
+            /* Para que el contenido principal ocupe el espacio restante */
+        }
+
+        .main {
+            flex: 1;
+            /* Para que ocupe el espacio restante */
+            text-align: center;
+            box-shadow: 0 0 3px;
+            overflow-y: auto;
+            /* Agregado para permitir el desplazamiento si el contenido es demasiado largo */
+        }
+
+        .aside {
+            padding: 20px;
+            box-shadow: 0 0 3px;
+            text-align: center;
+            /* Centrado del texto */
+            background-color: #f9f9f9;
+            /* Fondo gris claro */
+            width: 12%;
+            /* Ajuste del ancho del aside */
+        }
+
+        footer {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #005571;
+            color: #fff;
+            text-align: center;
+            align-items: flex-start;
+            /* Alinear elementos al inicio */
+        }
+
+        .address-name {
+            text-decoration: underline;
+        }
+
+        .informacion {
+            box-shadow: 0 0 3px;
+            width: 70%;
+            /* 70% de ancho */
+        }
+
+        .localizacion {
+            width: calc(30% - 20px);
+            /* 30% de ancho, restando el margen */
+            background-color: #E86000;
+        }
+
+
+        .menu-btn {
+            position: absolute;
+            left: 6px;
+            top: 20px;
+            background-color: transparent;
+            /* Fondo transparente */
+            padding-top: 3px;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: left 0.5s;
+            border: 2px solid black;
+            /* Borde de 2px sólido negro */
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="https://beteling.es/" ><img src="images/Logo-GRUPO-BETELING_inv_HZ_web.webp" alt="70" width="170"></a>
+        <h1>GRUPO BETELING</h1>
+        <div class="social">
+            <a aria-label="FACEBOOK" class="theme-dark facebook"
+                href="https://www.facebook.com/profile.php?id=100068651401613" target="_blank"><i
+                    class="fab fa-facebook"></i></a>
+            <a aria-label="INSTAGRAM" class="theme-dark instagram" href="https://www.instagram.com/grupo_beteling/"
+                target="_blank"><i class="fab fa-instagram"></i></a>
+            <a aria-label="LINKEDIN" class="theme-dark linkedin"
+                href="https://www.linkedin.com/company/beteling-consultoria-e-ingenieria-sl/" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+            <a aria-label="TWITTER" class="theme-dark twitter" href="https://twitter.com/beteling" target="_blank"><i
+                    class="fab fa-twitter"></i></a>
+            <a aria-label="YOUTUBE" class="theme-dark youtube" href="https://www.youtube.com/@GrupoBeteling"
+                target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </header>
+    <nav id="menu">
+        <h2>¡Bienvenido, [${user.getUsuario()}]</h2>
+        <a href="#"><img src="" alt="">foto</a>
+        <ul>
+            <li><a href="#">Iniciar Sesión</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+        </ul>
+        <span sec:authorize="isAuthenticated">
+        <a th:href="@{/logout}">
+         Logout
+        
+        </a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+
+    <div class="main-content">
+        <div class="main">
+            <h2>Main Content</h2>
+            <p>Texto principal aquí...</p>
+            <!-- Contenido principal aquí -->
+        </div>
+        <div class="aside">
+            <h2>Anuncios</h2>
+            <p>Información de anuncios aquí...</p>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById("menu");
+            var btn = document.querySelector(".menu-btn");
+            if (nav.style.left === "0px") {
+                nav.style.left = "-20%";
+                btn.style.left = "6px";
+            } else {
+                nav.style.left = "0";
+                btn.style.left = "calc(20% + 6px)";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

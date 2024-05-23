@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap Login &amp; Register Templates</title>
+        
+        <!-- CSS -->
+        
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/form-elements.css">
+        <link rel="stylesheet" href="css/login2.css">
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                	
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Beteling</strong> Consultoría &amp; Ingeniería</h1>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-5">
+                        	
+                        	<div class="form-box">
+	                        	<div class="form-top">
+	                        		<div class="form-top-left">
+	                        			<h3>Inicie sesión</h3>
+	                            		<p>Ingrese usuario y contraseña para iniciar sesión:</p>
+	                        		</div>
+	                        		<div class="form-top-right">
+	                        			<i class="fa fa-key"></i>
+	                        		</div>
+	                            </div>
+	                            <div class="form-bottom">
+                                        <div class="message" th:if="${param.error}">
+                                            Invalid Email or Password
+                                        </div>
+                                        <div class="message" th:if="${param.Logout}">
+                                            Logout Successfuly
+                                        </div>
+				                    <form role="form" th:action="@{/login}" method="post" class="login-form">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="username" id="form-username">Email</label>
+				                        	<input type="email" name="username" placeholder="Email..." class="form-username form-control" id="username">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="password">Password</label>
+				                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+				                        </div>
+				                        <button type="submit" class="btn" value="Register">Sign in!</button>
+				                    </form>
+			                    </div>
+		                    </div>
+		                
+		                	<div class="social-login">
+	                        	<div class="social-login-buttons">
+		                        	<a class="btn btn-link-1 btn-link-1-facebook" href="https://www.facebook.com/beteling.grupo/">
+		                        		<i class="fa fa-facebook"></i> Facebook
+		                        	</a>
+		                        	<a class="btn btn-link-1 btn-link-1-twitter" href="https://twitter.com/beteling">
+		                        		<i class="fa fa-twitter"></i> Twitter
+		                        	</a>
+		                        	<a class="btn btn-link-1 btn-link-1-linkedin" href="https://www.linkedin.com/company/beteling-consultoria-e-ingenieria-sl/" target="_blank" style="background-color: #0e76a8; color: #ffffff;">
+                                        <i class="fa fa-linkedin"></i> LinkedIn
+                                    </a>
+                                                                      
+	                        	</div>
+	                        </div>
+	                        
+                        </div>
+                        
+                        <div class="col-sm-1 middle-border"></div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+        			
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				<p>&copy; 2024 Beteling. Todos los derechos reservados.</p>
+        			</div>
+        			
+        		</div>
+        	</div>
+        </footer>
+
+        <!-- Javascript -->
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="css/bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/jquery.backstretch.min.js"></script>
+        <script src="js/scripts.js"></script>
+
+    </body>
+
+</html>
