@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
@@ -19,10 +19,10 @@ public class ClienteController {
     public String getAllClientes(Model model) {
         List<Cliente> clientes = clienteService.getAllClientes();
         model.addAttribute("clientes", clientes);
-        return "clientes";
+        return "cliente";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/cliente/{id_cliente}")
     @ResponseBody
     public Cliente getClienteById(@PathVariable int id) {
         return clienteService.getClienteById(id).orElse(null);
@@ -31,19 +31,19 @@ public class ClienteController {
     @PostMapping
     public String saveCliente(@ModelAttribute Cliente cliente) {
         clienteService.saveCliente(cliente);
-        return "redirect:/clientes";
+        return "redirect:/cliente";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/cliente/{id_cliente}")
     public String deleteCliente(@PathVariable int id) {
         clienteService.deleteCliente(id);
-        return "redirect:/clientes";
+        return "redirect:/cliente";
     }
 
-    @GetMapping("/search")
+    @GetMapping("/cliente/search")
     public String searchClientes(@RequestParam String nombre, Model model) {
         List<Cliente> clientes = clienteService.searchClientesByNombre(nombre);
         model.addAttribute("clientes", clientes);
-        return "clientes";
+        return "cliente";
     }
 }
