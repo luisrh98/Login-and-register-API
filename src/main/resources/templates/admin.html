@@ -1,365 +1,367 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Título de tu página</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      /* Para deshabilitar el desbordamiento horizontal */
-      width: 100%;
-      /* Para que ocupe todo el ancho del navegador */
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      /* Para que el cuerpo ocupe al menos el 100% de la altura de la ventana del navegador */
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Título de tu página</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                /* Para deshabilitar el desbordamiento horizontal */
+                width: 100%;
+                /* Para que ocupe todo el ancho del navegador */
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                /* Para que el cuerpo ocupe al menos el 100% de la altura de la ventana del navegador */
+            }
 
-    header {
-      background-color: #005571;
-      color: #fff;
-      text-align: center;
-      /* Centrado del texto */
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      /* Alineación horizontal */
-      height: 10vh;
-      /* Altura del 10% de la ventana */
-      padding-left: 5%;
-      padding-right: 5%;
-      /* Añadido para el margen derecho */
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
+            header {
+                background-color: #005571;
+                color: #fff;
+                text-align: center;
+                /* Centrado del texto */
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                /* Alineación horizontal */
+                height: 10vh;
+                /* Altura del 10% de la ventana */
+                padding-left: 5%;
+                padding-right: 5%;
+                /* Añadido para el margen derecho */
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
 
-    header h1 {
-      font-size: 15px;
-    }
+            header h1 {
+                font-size: 15px;
+            }
 
-    .social {
-      align-items: center;
-      /* Alinear elementos verticalmente */
-      vertical-align: middle;
-    }
+            .social {
+                align-items: center;
+                /* Alinear elementos verticalmente */
+                vertical-align: middle;
+            }
 
-    .social-container {
-      display: flex;
-      align-items: center;
-    }
+            .social-container {
+                display: flex;
+                align-items: center;
+            }
 
-    .social a {
-      color: #fff;
-      /* Color de ícono predeterminado */
-      margin-right: 6px;
-      /* Espacio entre los iconos */
-      transition: color 0.5s;
-      /* Transición de color */
-    }
+            .social a {
+                color: #fff;
+                /* Color de ícono predeterminado */
+                margin-right: 6px;
+                /* Espacio entre los iconos */
+                transition: color 0.5s;
+                /* Transición de color */
+            }
 
-    .social a i:hover {
-      color: #0087b4;
-      /* Cambio de color al pasar el cursor */
-    }
+            .social a i:hover {
+                color: #0087b4;
+                /* Cambio de color al pasar el cursor */
+            }
 
-    .fa-youtube,
-    .fa-twitter,
-    .fa-instagram,
-    .fa-linkedin,
-    .fa-facebook {
-      padding: 5px;
-      color: #fff;
-      border: 2px solid rgb(255, 255, 255);
-      /* Borde de 2px sólido negro */
-      border-radius: 100px;
+            .fa-youtube,
+            .fa-twitter,
+            .fa-instagram,
+            .fa-linkedin,
+            .fa-facebook {
+                padding: 5px;
+                color: #fff;
+                border: 2px solid rgb(255, 255, 255);
+                /* Borde de 2px sólido negro */
+                border-radius: 100px;
 
-    }
+            }
 
-    nav {
-      position: fixed;
-      top: 0;
-      left: -20%;
-      /* Inicialmente oculto */
-      width: 20%;
-      height: 100%;
-      background-color: #f2f2f2;
-      padding: 20px;
-      text-align: left;
-      /* Alineación de texto a la izquierda */
-      transition: left 0.5s;
-      /* Añadido para la transición de animación */
-    }
+            nav {
+                position: fixed;
+                top: 0;
+                left: -20%;
+                /* Inicialmente oculto */
+                width: 20%;
+                height: 100%;
+                background-color: #f2f2f2;
+                padding: 20px;
+                text-align: left;
+                /* Alineación de texto a la izquierda */
+                transition: left 0.5s;
+                /* Añadido para la transición de animación */
+            }
 
-    #menu ul {
-      list-style: none;
-      align-items: center;
-    }
+            #menu ul {
+                list-style: none;
+                align-items: center;
+            }
 
-    #menu ul li {
-      align-items: center;
-      text-align: center;
-      padding: 12px;
-      box-shadow: 0 0 3px;
-    }
+            #menu ul li {
+                align-items: center;
+                text-align: center;
+                padding: 12px;
+                box-shadow: 0 0 3px;
+            }
 
-    .main-content {
-      width: 100%;
-      box-shadow: 0 0 3px;
-      display: flex;
-      /* Mostrar los elementos internos como una fila */
-      flex: 1;
-      /* Para que el contenido principal ocupe el espacio restante */
-    }
+            .main-content {
+                width: 100%;
+                box-shadow: 0 0 3px;
+                display: flex;
+                /* Mostrar los elementos internos como una fila */
+                flex: 1;
+                /* Para que el contenido principal ocupe el espacio restante */
+            }
 
-    .main {
-        padding-left: 30px;
-      flex: 1;
-      /* Para que ocupe el espacio restante */
-      text-align: center;
-      box-shadow: 0 0 3px;
-      overflow-y: auto;
-      /* Agregado para permitir el desplazamiento si el contenido es demasiado largo */
-    }
+            .main {
+                padding-left: 30px;
+                flex: 1;
+                /* Para que ocupe el espacio restante */
+                text-align: center;
+                box-shadow: 0 0 3px;
+                overflow-y: auto;
+                /* Agregado para permitir el desplazamiento si el contenido es demasiado largo */
+            }
 
-    .aside {
-      padding: 20px;
-      box-shadow: 0 0 3px;
-      text-align: center;
-      /* Centrado del texto */
-      background-color: #f9f9f9;
-      /* Fondo gris claro */
-      width: 12%;
-      /* Ajuste del ancho del aside */
-    }
+            .aside {
+                padding: 20px;
+                box-shadow: 0 0 3px;
+                text-align: center;
+                /* Centrado del texto */
+                background-color: #f9f9f9;
+                /* Fondo gris claro */
+                width: 12%;
+                /* Ajuste del ancho del aside */
+            }
 
-    footer {
-      display: none;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      background-color: #005571;
-      color: #fff;
-      text-align: center;
-      align-items: flex-start;
-      /* Alinear elementos al inicio */
-    }
+            footer {
+                display: none;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                background-color: #005571;
+                color: #fff;
+                text-align: center;
+                align-items: flex-start;
+                /* Alinear elementos al inicio */
+            }
 
-    .address-name {
-      text-decoration: underline;
-    }
+            .address-name {
+                text-decoration: underline;
+            }
 
-    .informacion {
-      box-shadow: 0 0 3px;
-      width: 70%;
-      /* 70% de ancho */
-    }
+            .informacion {
+                box-shadow: 0 0 3px;
+                width: 70%;
+                /* 70% de ancho */
+            }
 
-    .localizacion {
-      width: calc(30% - 20px);
-      /* 30% de ancho, restando el margen */
-      background-color: #E86000;
-    }
+            .localizacion {
+                width: calc(30% - 20px);
+                /* 30% de ancho, restando el margen */
+                background-color: #E86000;
+            }
 
 
-    .menu-btn {
-      position: absolute;
-      left: 6px;
-      top: 20px;
-      background-color: transparent;
-      /* Fondo transparente */
-      padding-top: 3px;
-      color: #000000;
-      border: none;
-      cursor: pointer;
-      text-align: center;
-      transition: left 0.5s;
-      border: 2px solid black;
-      /* Borde de 2px sólido negro */
-      border-radius: 3px;
-    }
+            .menu-btn {
+                position: absolute;
+                left: 6px;
+                top: 20px;
+                background-color: transparent;
+                /* Fondo transparente */
+                padding-top: 3px;
+                color: #000000;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                transition: left 0.5s;
+                border: 2px solid black;
+                /* Borde de 2px sólido negro */
+                border-radius: 3px;
+            }
 
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin-bottom: 20px;
-    }
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin-bottom: 20px;
+            }
 
-    .card {
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      margin: 10px;
-      width: 220px;
-      /* Adjust width as needed */
-      text-align: center;
-      padding: 15px;
-    }
+            .card {
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                margin: 10px;
+                width: 220px;
+                /* Adjust width as needed */
+                text-align: center;
+                padding: 15px;
+            }
 
-    .card:hover {
-      background-color: #e8e8e8;
-      /* Change background color on hover */
-    }
+            .card:hover {
+                background-color: #e8e8e8;
+                /* Change background color on hover */
+            }
 
-    .card-image {
-      margin-bottom: 10px;
-      font-size: 30px;
-      color: #007bff;
-    }
+            .card-image {
+                margin-bottom: 10px;
+                font-size: 30px;
+                color: #007bff;
+            }
 
-    .card-content {
-      h3 {
-        font-size: 18px;
-        margin-bottom: 5px;
-      }
+            .card-content {
+                h3 {
+                    font-size: 18px;
+                    margin-bottom: 5px;
+                }
 
-      p {
-        font-weight: bold;
-      }
-    }
-  </style>
-</head>
+                p {
+                    font-weight: bold;
+                }
+            }
+        </style>
+    </head>
 
-<body>
-  <header>
-    <img src="images/Logo-GRUPO-BETELING_inv_HZ_web.webp" alt="70" width="170" />
-    <h1>GRUPO BETELING</h1>
-    <div class="social">
-      <a aria-label="FACEBOOK" class="theme-dark facebook"
-        href="https://www.facebook.com/profile.php?id=100068651401613" target="_blank"><i
-          class="fab fa-facebook"></i></a>
-      <a aria-label="INSTAGRAM" class="theme-dark instagram" href="https://www.instagram.com/grupo_beteling/"
-        target="_blank"><i class="fab fa-instagram"></i></a>
-      <a aria-label="LINKEDIN" class="theme-dark linkedin"
-        href="https://www.linkedin.com/company/beteling-consultoria-e-ingenieria-sl/" target="_blank"><i
-          class="fab fa-linkedin"></i></a>
-      <a aria-label="TWITTER" class="theme-dark twitter" href="https://twitter.com/beteling" target="_blank"><i
-          class="fab fa-twitter"></i></a>
-      <a aria-label="YOUTUBE" class="theme-dark youtube" href="https://www.youtube.com/@GrupoBeteling"
-        target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-  </header>
-  <nav id="menu">
-    <h2>¡Bienvenido [[${user.getUsuario()}]]!</h2>
-    <a href="#"><img src="" alt="">foto</a>
-    <ul>
-      <li><a href="#">Iniciar Sesión</a></li>
-      <li><a href="#">Sobre Nosotros</a></li>
-      <!-- Agrega más opciones de menú según sea necesario -->
-    </ul>
-    <span sec:authorize="isAuthenticated">
-        <a th:href="@{/logout}">
-         Logout
-        
-        </a>
-  </nav>
-  <button class="menu-btn" onclick="toggleMenu()">
-    <i class="fa-solid fa-bars"></i>
-  </button>
+    <body>
+        <header>
+            <img src="images/Logo-GRUPO-BETELING_inv_HZ_web.webp" alt="70" width="170" />
+            <h1>GRUPO BETELING</h1>
+            <div class="social">
+                <a aria-label="FACEBOOK" class="theme-dark facebook"
+                   href="https://www.facebook.com/profile.php?id=100068651401613" target="_blank"><i
+                        class="fab fa-facebook"></i></a>
+                <a aria-label="INSTAGRAM" class="theme-dark instagram" href="https://www.instagram.com/grupo_beteling/"
+                   target="_blank"><i class="fab fa-instagram"></i></a>
+                <a aria-label="LINKEDIN" class="theme-dark linkedin"
+                   href="https://www.linkedin.com/company/beteling-consultoria-e-ingenieria-sl/" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a aria-label="TWITTER" class="theme-dark twitter" href="https://twitter.com/beteling" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a aria-label="YOUTUBE" class="theme-dark youtube" href="https://www.youtube.com/@GrupoBeteling"
+                   target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </header>
+        <nav id="menu">
+            <h2>¡Bienvenido [[${user.getUsuario()}]]!</h2>
+            <a href="#"><img src="" alt="">foto</a>
+            <ul>
+                <li><a href="#">Iniciar Sesión</a></li>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <!-- Agrega más opciones de menú según sea necesario -->
+            </ul>
+            <span sec:authorize="isAuthenticated">
+                <a th:href="@{/logout}">
+                    Logout
 
-  <div class="main-content">
-    <div class="main">
-      <div class="card-container">
-        <button class="card">
-          <div class="card-image">
-            <i class="fas fa-users"></i>
-          </div>
-          <div class="card-content">
-            <h3>Admin</h3>
-            <p>7</p>
-          </div>
+                </a>
+        </nav>
+        <button class="menu-btn" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
         </button>
-        <button class="card">
-          <div class="card-image">
-            <i class="fas fa-chalkboard-teacher"></i>
-          </div>
-          <div class="card-content">
-            <h3>Ingenieros</h3>
-            <p>10</p>
-          </div>
-        </button>
-        <button class="card">
-          <div class="card-image">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <div class="card-content">
-            <h3>Técnicos</h3>
-            <p>70</p>
-          </div>
-        </button>
-        <button class="card">
-          <div class="card-image">
-            <i class="fas fa-user-tie"></i>
-          </div>
-          <div class="card-content">
-            <h3>Clientes</h3>
-            <p>70</p>
-          </div>
-        </button>
-        <button class="card">
-          <div class="card-image">
-            <i class="fas fa-user-tie"></i>
-          </div>
-          <div class="card-content">
-            <h3>Funcionalidades contratadas</h3>
-            <p>70</p>
-          </div>
-        </button>
-          <button class="card">
-          <div class="card-image">
-            <i class="fas fa-user-tie"></i>
-          </div>
-          <div class="card-content">
-            <h3>Incidencias</h3>
-            <p>70</p>
-          </div>
-        </button>
-          
-      </div>
-    </div>
-    <div class="aside">
-      <h2>Anuncios</h2>
-      <p>Información de anuncios aquí...</p>
-    </div>
-  </div>
-  <script>
-    function toggleMenu() {
-      var nav = document.getElementById("menu");
-      var btn = document.querySelector(".menu-btn");
-      if (nav.style.left === "0px") {
-        nav.style.left = "-20%";
-        btn.style.left = "6px";
-      } else {
-        nav.style.left = "0";
-        btn.style.left = "calc(20% + 6px)";
-      }
-    }
-    const cards = document.querySelectorAll('.card');
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        // Get the button's title text
-        const title = card.querySelector('.card-content h3').textContent;
+        <div class="main-content">
+            <div class="main">
+                <div class="card-container">
+                    <button class="card">
+                        <div class="card-image">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Admin</h3>
+                            <p>7</p>
+                        </div>
+                    </button>
+                    <button class="card">
+                        <div class="card-image">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Ingenieros</h3>
+                            <p>10</p>
+                        </div>
+                    </button>
+                    <button class="card">
+                        <div class="card-image">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Técnicos</h3>
+                            <p>70</p>
+                        </div>
+                    </button>
+                    <a>
+                        <button class="card">
+                            <div class="card-image">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Clientes</h3>
+                                <p>70</p>
+                            </div>
+                        </button>
+                        <a href="cliente.html" target="_blank"></a>
+                        <button class="card">
+                            <div class="card-image">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Funcionalidades contratadas</h3>
+                                <p>70</p>
+                            </div>
+                        </button>
+                        <button class="card">
+                            <div class="card-image">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Incidencias</h3>
+                                <p>70</p>
+                            </div>
+                        </button>
 
-        // Redirect to the corresponding page based on the title
-        if (title === 'Admin') {
-          window.location.href = 'admin.html'; // Replace with your admin page URL
-        } else if (title === 'Ingenieros') {
-          window.location.href = 'ingenieros.html'; // Replace with your teacher page URL
-        } else if (title === 'Técnicos') {
-          window.location.href = 'tecnicos.html'; // Replace with your student page URL
-        } else if (title === 'Funcionalidades') {
-          window.location.href = 'funcionalidades.html'; // Replace with your representative page URL
-        } else if (title === 'Clientes') {
-          window.location.href = 'cliente.html'; // Replace with your representative page URL
-        } else if (title === 'Incidencias') {
-          window.location.href = 'incidencias.html'; // Replace with your representative page URL
-        }
-      });
-    });
-  </script>
-</body>
+                </div>
+            </div>
+            <div class="aside">
+                <h2>Anuncios</h2>
+                <p>Información de anuncios aquí...</p>
+            </div>
+        </div>
+        <script>
+            function toggleMenu() {
+                var nav = document.getElementById("menu");
+                var btn = document.querySelector(".menu-btn");
+                if (nav.style.left === "0px") {
+                    nav.style.left = "-20%";
+                    btn.style.left = "6px";
+                } else {
+                    nav.style.left = "0";
+                    btn.style.left = "calc(20% + 6px)";
+                }
+            }
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Get the button's title text
+                    const title = card.querySelector('.card-content h3').textContent;
+
+                    // Redirect to the corresponding page based on the title
+                    if (title === 'Admin') {
+                        window.location.href = 'admin.html'; // Replace with your admin page URL
+                    } else if (title === 'Ingenieros') {
+                        window.location.href = 'ingenieros.html'; // Replace with your teacher page URL
+                    } else if (title === 'Técnicos') {
+                        window.location.href = 'tecnicos.html'; // Replace with your student page URL
+                    } else if (title === 'Funcionalidades') {
+                        window.location.href = 'funcionalidades.html'; // Replace with your representative page URL
+                    } else if (title === 'Clientes') {
+                        window.location.href = 'cliente.html'; // Replace with your representative page URL
+                    } else if (title === 'Incidencias') {
+                        window.location.href = 'incidencias.html'; // Replace with your representative page URL
+                    }
+                });
+            });
+        </script>
+    </body>

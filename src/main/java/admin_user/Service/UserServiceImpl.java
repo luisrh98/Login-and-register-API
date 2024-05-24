@@ -22,5 +22,15 @@ public class UserServiceImpl implements UserService{
         User user = new User(userDto.getUsuario(),passwordEncoder.encode(userDto.getPassword()), userDto.getCorreo(),userDto.getRoles());
         return userRepository.save(user);
     }
+
+    @Override
+    public User delete(UserDto userDto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public User update(UserDto userDto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

@@ -2,6 +2,7 @@ package admin_user.controller;
 
 import admin_user.Service.UserService;
 import admin_user.dto.UserDto;
+import admin_user.model.Cliente;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,25 @@ public class UserController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
                 model.addAttribute("user", userDetails);
         return "admin";
+    }
+    
+    @GetMapping("/registrar-cliente")
+    public String registrarCliente (Model model, Principal principal){
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+                model.addAttribute("user", userDetails);
+        return "cliente";
+    }
+    
+    //Controladores de post y get de formulario cliente
+    @GetMapping("/registrar-cliente")
+    public String mostrarFormulario() {
+        return "formulario-registro";
+    }
+
+    @PostMapping("/registrar-cliente")
+    public String registrarCliente(Cliente cliente) {
+        // Aquí puedes implementar la lógica para guardar los datos del cliente en la base de datos
+        return "redirect:/exito";
     }
     
 }

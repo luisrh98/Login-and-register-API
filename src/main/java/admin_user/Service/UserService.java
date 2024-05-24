@@ -7,4 +7,8 @@ import admin_user.model.User;
 public interface UserService {
     
     User save (UserDto userDto);
+    
+    User delete (UserDto userDto);
+    
+    User update (UserDto userDto);
 }
