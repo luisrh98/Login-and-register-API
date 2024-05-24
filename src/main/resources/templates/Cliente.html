@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <meta charset="UTF-8">
@@ -258,26 +258,55 @@
         <div class="main-content">
             <div class="main">
                 <h2>Panel de cliente</h2>
-                <form action="/submit" method="post">
-                    <h2>Registrar Cliente</h2>
+                <h1>Clientes</h1>
+                <form th:action="@{/clientes}" method="post">
+                    <input type="hidden" th:field="*{idCliente}" />
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
-
-                    <label for="primerApellido">Primer Apellido:</label>
-                    <input type="text" id="primerApellido" name="primerApellido" required>
-
-                    <label for="segundoApellido">Segundo Apellido:</label>
-                    <input type="text" id="segundoApellido" name="segundoApellido" required>
-
+                    <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
+                    <label for="apellido1">Primer Apellido:</label>
+                    <input type="text" id="apellido1" name="apellido1" th:field="*{apellido1}" required />
+                    <label for="apellido2">Segundo Apellido:</label>
+                    <input type="text" id="apellido2" name="apellido2" th:field="*{apellido2}" required />
                     <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" required>
-
+                    <input type="number" id="telefono" name="telefono" th:field="*{telefono}" required />
                     <label for="correo">Correo:</label>
-                    <input type="email" id="correo" name="correo" required>
-
-                    <button type="submit">Registrar Cliente</button>
+                    <input type="email" id="correo" name="correo" th:field="*{correo}" required />
+                    <button type="submit">Guardar Cliente</button>
                 </form>
+
+                <h2>Buscar Cliente</h2>
+                <form th:action="@{/clientes/search}" method="get">
+                    <label for="search">Nombre:</label>
+                    <input type="text" id="search" name="nombre" />
+                    <button type="submit">Buscar</button>
+                </form>
+
                 <!-- Contenido principal aquí -->
+            </div>
+            <div>
+                <h2>Lista de Clientes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cliente : ${clientes}">
+                            <td th:text="${cliente.idCliente}"></td>
+                            <td th:text="${cliente.nombre}"></td>
+                            <td th:text="${cliente.apellido1}"></td>
+                            <td th:text="${cliente.apellido2}"></td>
+                            <td th:text="${cliente.telefono}"></td>
+                            <td th:text="${cliente.correo}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="aside">
                 <h2>Anuncios</h2>

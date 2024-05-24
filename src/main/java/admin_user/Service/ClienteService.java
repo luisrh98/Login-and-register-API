@@ -4,19 +4,36 @@
  */
 package admin_user.Service;
 
-import admin_user.dto.ClienteDto;
 import admin_user.model.Cliente;
+import admin_user.repositories.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-/**
- *
- * @author PC-56
- */
-public interface ClienteService {
-    
-    Cliente save (ClienteDto clienteDto);
-    
-    Cliente delete (ClienteDto clienteDto);
-    
-    Cliente update (ClienteDto clienteDto);
-    
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ClienteService {
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    public List<Cliente> getAllClientes() {
+        return clienteRepository.findAll();
+    }
+
+    public Optional<Cliente> getClienteById(int id) {
+        return clienteRepository.findById(id);
+    }
+
+    public Cliente saveCliente(Cliente cliente) {
+        return clienteRepository.save(cliente);
+    }
+
+    public void deleteCliente(int id) {
+        clienteRepository.deleteById(id);
+    }
+
+    public List<Cliente> searchClientesByNombre(String nombre) {
+        return clienteRepository.findByNombreContaining(nombre);
+    }
 }

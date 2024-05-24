@@ -1,37 +1,49 @@
 package admin_user.controller;
 
 import admin_user.Service.ClienteService;
-import admin_user.dto.ClienteDto;
+import admin_user.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
-
-@RestController
-@RequestMapping("/cliente")
+@Controller
+@RequestMapping("/clientes")
 public class ClienteController {
-    
-    @Autowired
-    ClienteDetailsService clienteDetailsService;
-    
     @Autowired
     private ClienteService clienteService;
-    
-    @GetMapping("/registration")
-    public String getReStrationPage(@ModelAttribute("user")ClienteDto clienteDto){
-        return "register";
+
+    @GetMapping
+    public String getAllClientes(Model model) {
+        List<Cliente> clientes = clienteService.getAllClientes();
+        model.addAttribute("clientes", clientes);
+        return "clientes";
     }
-    
-    @PostMapping("/registration")
-    public String saveUser(@ModelAttribute("user")ClienteDto clienteDto, Model model){
-        clienteService.save(clienteDto);
-        model.addAttribute("message", "Registered Successfuly!");
-        return "redirect:/login";
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Cliente getClienteById(@PathVariable int id) {
+        return clienteService.getClienteById(id).orElse(null);
     }
-    
+
+    @PostMapping
+    public String saveCliente(@ModelAttribute Cliente cliente) {
+        clienteService.saveCliente(cliente);
+        return "redirect:/clientes";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteCliente(@PathVariable int id) {
+        clienteService.deleteCliente(id);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping("/search")
+    public String searchClientes(@RequestParam String nombre, Model model) {
+        List<Cliente> clientes = clienteService.searchClientesByNombre(nombre);
+        model.addAttribute("clientes", clientes);
+        return "clientes";
+    }
 }
