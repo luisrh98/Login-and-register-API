@@ -261,18 +261,13 @@
             <div class="main">
                 <h2>Panel de cliente</h2>
                 <h1>Clientes</h1>
-                <form th:action="@{/clientes}" method="post" role= "form" th:object="${cliente}">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
-                    <label for="apellido1">Primer Apellido:</label>
-                    <input type="text" id="apellido1" name="apellido1" th:field="*{apellido1}" required />
-                    <label for="apellido2">Segundo Apellido:</label>
-                    <input type="text" id="apellido2" name="apellido2" th:field="*{apellido2}" required />
-                    <label for="telefono">Teléfono:</label>
-                    <input type="number" id="telefono" name="telefono" th:field="*{telefono}" required />
-                    <label for="correo">Correo:</label>
-                    <input type="email" id="correo" name="correo" th:field="*{correo}" required />
-                    <button class="button-guardar" type="submit">Guardar Cliente</button>
+                <form th:object="${cliente}" th:action="@{/cliente}" method="post">
+                    <input type="text" th:field="*{nombre}" placeholder="Nombre"/>
+                    <input type="text" th:field="*{apellido1}" placeholder="Apellido 1"/>
+                    <input type="text" th:field="*{apellido2}" placeholder="Apellido 2"/>
+                    <input type="text" th:field="*{telefono}" placeholder="Teléfono"/>
+                    <input type="text" th:field="*{correo}" placeholder="Correo electrónico"/>
+                    <button type="submit">Guardar</button>
                 </form>
 
                 <h2>Buscar Cliente</h2>
@@ -313,7 +308,7 @@
             </div>
         </div>
         <script>
-         function toggleMenu() {
+            function toggleMenu() {
                 var nav = document.getElementById("menu");
                 var btn = document.querySelector(".menu-btn");
                 if (nav.style.left === "0px") {

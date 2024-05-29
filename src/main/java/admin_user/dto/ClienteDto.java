@@ -7,6 +7,10 @@ public class ClienteDto {
     private String telefono;
     private String correo;
 
+    public ClienteDto() {
+    }
+
+    
     public ClienteDto(String nombre, String apellido1, String apellido2, String telefono, String correo) {
         super();
         this.nombre = nombre;
