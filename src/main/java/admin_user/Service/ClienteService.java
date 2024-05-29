@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @Service
 public class ClienteService {
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -36,4 +37,9 @@ public class ClienteService {
     public List<Cliente> searchClientesByNombre(String nombre) {
         return clienteRepository.findByNombreContaining(nombre);
     }
+
+    public List<Cliente> getClienteByNombre(String nombre) {
+        return clienteRepository.findByNombreContaining(nombre);
+    }
+
 }
