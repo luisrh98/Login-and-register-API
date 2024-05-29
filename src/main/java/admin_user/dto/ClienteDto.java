@@ -1,6 +1,7 @@
 package admin_user.dto;
 
 public class ClienteDto {
+    private int id_cliente;
     private String nombre;
     private String apellido1;
     private String apellido2;
@@ -19,6 +20,10 @@ public class ClienteDto {
         this.telefono = telefono;
         this.correo = correo;
     }    
+
+    public int getId_cliente() {
+        return id_cliente;
+    }
 
     public String getNombre() {
         return nombre;

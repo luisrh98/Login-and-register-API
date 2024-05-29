@@ -11,29 +11,22 @@
                 margin: 0;
                 padding: 0;
                 overflow-x: hidden;
-                /* Para deshabilitar el desbordamiento horizontal */
                 width: 100%;
-                /* Para que ocupe todo el ancho del navegador */
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
-                /* Para que el cuerpo ocupe al menos el 100% de la altura de la ventana del navegador */
             }
 
             header {
                 background-color: #005571;
                 color: #fff;
                 text-align: center;
-                /* Centrado del texto */
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                /* Alineación horizontal */
                 height: 10vh;
-                /* Altura del 10% de la ventana */
                 padding-left: 5%;
                 padding-right: 5%;
-                /* Añadido para el margen derecho */
                 padding-top: 16px;
                 padding-bottom: 16px;
             }
@@ -44,8 +37,6 @@
 
             .social {
                 align-items: center;
-                /* Alinear elementos verticalmente */
-                vertical-align: middle;
             }
 
             .social-container {
@@ -55,16 +46,12 @@
 
             .social a {
                 color: #fff;
-                /* Color de ícono predeterminado */
                 margin-right: 6px;
-                /* Espacio entre los iconos */
                 transition: color 0.5s;
-                /* Transición de color */
             }
 
             .social a i:hover {
                 color: #0087b4;
-                /* Cambio de color al pasar el cursor */
             }
 
             .fa-youtube,
@@ -75,65 +62,59 @@
                 padding: 5px;
                 color: #fff;
                 border: 2px solid rgb(255, 255, 255);
-                /* Borde de 2px sólido negro */
                 border-radius: 100px;
-
             }
 
             nav {
                 position: fixed;
                 top: 0;
                 left: -20%;
-                /* Inicialmente oculto */
                 width: 20%;
                 height: 100%;
                 background-color: #f2f2f2;
                 padding: 20px;
                 text-align: left;
-                /* Alineación de texto a la izquierda */
                 transition: left 0.5s;
-                /* Añadido para la transición de animación */
             }
 
-            #menu ul{
+            #menu ul {
                 list-style: none;
-                align-items: center;
+                padding: 0;
             }
 
-            #menu ul li{
-                align-items: center;
+            #menu ul li {
                 text-align: center;
                 padding: 12px;
                 box-shadow: 0 0 3px;
+                margin-bottom: 10px;
             }
 
             .main-content {
                 width: 100%;
                 box-shadow: 0 0 3px;
                 display: flex;
-                /* Mostrar los elementos internos como una fila */
                 flex: 1;
-                /* Para que el contenido principal ocupe el espacio restante */
             }
 
             .main {
                 flex: 1;
-                /* Para que ocupe el espacio restante */
                 text-align: center;
                 box-shadow: 0 0 3px;
                 overflow-y: auto;
-                /* Agregado para permitir el desplazamiento si el contenido es demasiado largo */
+                padding: 10px;
             }
-
+            
+            .tabla {
+                padding: 20px;
+                text-align: center;
+            }
+            
             .aside {
                 padding: 20px;
                 box-shadow: 0 0 3px;
                 text-align: center;
-                /* Centrado del texto */
                 background-color: #f9f9f9;
-                /* Fondo gris claro */
                 width: 12%;
-                /* Ajuste del ancho del aside */
             }
 
             footer {
@@ -144,7 +125,6 @@
                 color: #fff;
                 text-align: center;
                 align-items: flex-start;
-                /* Alinear elementos al inicio */
             }
 
             .address-name {
@@ -154,22 +134,18 @@
             .informacion {
                 box-shadow: 0 0 3px;
                 width: 70%;
-                /* 70% de ancho */
             }
 
             .localizacion {
                 width: calc(30% - 20px);
-                /* 30% de ancho, restando el margen */
                 background-color: #E86000;
             }
-
 
             .menu-btn {
                 position: absolute;
                 left: 6px;
                 top: 20px;
                 background-color: transparent;
-                /* Fondo transparente */
                 padding-top: 3px;
                 color: #000000;
                 border: none;
@@ -177,10 +153,10 @@
                 text-align: center;
                 transition: left 0.5s;
                 border: 2px solid black;
-                /* Borde de 2px sólido negro */
                 border-radius: 3px;
             }
-            /*Css formulario*/
+
+            /* CSS formulario */
             label {
                 display: block;
                 margin-bottom: 8px;
@@ -211,14 +187,39 @@
             button:hover {
                 background-color: #0056b3;
             }
+
             form {
                 background-color: #fff;
                 padding: 20px 40px;
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 width: 300px;
-                align-items: center;
+                margin: 0 auto;
             }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
         </style>
     </head>
 
@@ -267,23 +268,24 @@
                     <input type="text" th:field="*{apellido2}" placeholder="Apellido 2"/>
                     <input type="text" th:field="*{telefono}" placeholder="Teléfono"/>
                     <input type="text" th:field="*{correo}" placeholder="Correo electrónico"/>
-                    <button type="submit">Guardar</button>
+                    <button class="button-guardar" type="submit">Guardar</button>
                 </form>
 
                 <h2>Buscar Cliente</h2>
                 <form th:action="@{/clientes/search}" method="get" th:object="${cliente}">
                     <label for="search">Nombre:</label>
                     <input type="text" id="search" name="nombre" />
-                    <button type="submit">Buscar</button>
+                    <button class="button-guardar" type="submit">Buscar</button>
                 </form>
 
                 <!-- Contenido principal aquí -->
             </div>
-            <div>
+            <div class="tabla">
                 <h2>Lista de Clientes</h2>
                 <table>
                     <thead>
                         <tr>
+                            <th>Id_cliente</th>
                             <th>Nombre</th>
                             <th>Primer Apellido</th>
                             <th>Segundo Apellido</th>
@@ -293,7 +295,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="cliente : ${clientes}">
-                            <td><span th:text="${cliente.nombre}"></span>></td>
+                            <td><span th:text="${cliente.id_cliente}"></span></td>
+                            <td><span th:text="${cliente.nombre}"></span></td>
                             <td> <span th:text="${cliente.apellido1}"></span></td>
                             <td> <span th:text="${cliente.apellido2}"></span></td>
                             <td> <span th:text="${cliente.telefono}"></span></td>
