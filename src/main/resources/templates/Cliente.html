@@ -197,7 +197,7 @@
                 border-radius: 4px;
             }
 
-            button {
+            .button-guardar {
                 width: 100%;
                 padding: 10px;
                 background-color: #007BFF;
@@ -217,6 +217,7 @@
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 width: 300px;
+                align-items: center;
             }
         </style>
     </head>
@@ -271,7 +272,7 @@
                     <input type="number" id="telefono" name="telefono" th:field="*{telefono}" required />
                     <label for="correo">Correo:</label>
                     <input type="email" id="correo" name="correo" th:field="*{correo}" required />
-                    <button type="submit">Guardar Cliente</button>
+                    <button class="button-guardar" type="submit">Guardar Cliente</button>
                 </form>
 
                 <h2>Buscar Cliente</h2>
