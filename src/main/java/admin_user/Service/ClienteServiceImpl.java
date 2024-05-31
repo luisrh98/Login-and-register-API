@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -20,8 +21,19 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente getClienteById(int id) {
-        return clienteRepository.findById(id).orElse(null);
+    public void eliminarCliente(int id_cliente) {
+        clienteRepository.deleteById(id_cliente);
+    }
+
+
+    @Override
+    public Cliente obtenerClientePorId(int id_cliente) {
+        Optional<Cliente> clienteOpt = clienteRepository.findById(id_cliente);
+        if (clienteOpt.isPresent()) {
+            return clienteOpt.get();
+        } else {
+            throw new RuntimeException("Cliente no encontrado con id: " + id_cliente);
+        }
     }
 
     @Override
@@ -35,10 +47,6 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    @Override
-    public void deleteCliente(int id) {
-        clienteRepository.deleteById(id);
-    }
 
     @Override
     public List<Cliente> getClienteByNombreOrApellido1OrApellido2OrTelefono(String nombre, String apellidos, String telefono) {
@@ -53,5 +61,10 @@ public class ClienteServiceImpl implements ClienteService {
         }
         // Llamar al método de búsqueda en el repositorio
         return clienteRepository.findByNombreOrApellido1OrApellido2OrTelefono(nombre, apellido1, apellido2, telefono);
+    }
+
+    @Override
+    public Cliente getClienteById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

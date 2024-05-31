@@ -3,6 +3,7 @@ package admin_user.controller;
 import admin_user.Service.ClienteService;
 import admin_user.dto.ClienteDto;
 import admin_user.model.Cliente;
+import admin_user.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,10 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-
+    
     @Autowired
-    private UserDetailsService userDetailsService;
+    private ClienteRepository clienteRepository;
+
 
     @PostMapping
     public String saveCliente(@ModelAttribute("cliente") ClienteDto clienteDto) {
@@ -48,17 +50,17 @@ public class ClienteController {
         return clienteService.getClienteById(id_cliente);
     }
 
-    @DeleteMapping("/{id_cliente}")
-    public String deleteCliente(@PathVariable int id_cliente) {
-        clienteService.deleteCliente(id_cliente);
+    @PostMapping("/borrar/{id}")
+    public String eliminarCliente(@PathVariable("id") int id_cliente) {
+        clienteService.eliminarCliente(id_cliente);
         return "redirect:/cliente";
     }
 
     @GetMapping("/buscar")
     public String searchClientes(
-            @RequestParam(required = false) String nombre, 
-            @RequestParam(required = false) String apellidos, 
-            @RequestParam(required = false) String telefono, 
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String apellidos,
+            @RequestParam(required = false) String telefono,
             Model model) {
         List<Cliente> clientes = clienteService.getClienteByNombreOrApellido1OrApellido2OrTelefono(nombre, apellidos, telefono);
         model.addAttribute("clientes", clientes);

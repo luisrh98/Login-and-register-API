@@ -103,12 +103,12 @@
                 overflow-y: auto;
                 padding: 10px;
             }
-            
+
             .tabla {
                 padding: 20px;
                 text-align: center;
             }
-            
+
             .aside {
                 padding: 20px;
                 box-shadow: 0 0 3px;
@@ -285,12 +285,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Id_cliente</th>
+                            <th>Id</th>
                             <th>Nombre</th>
                             <th>Primer Apellido</th>
                             <th>Segundo Apellido</th>
                             <th>Teléfono</th>
                             <th>Correo</th>
+                            <th>Actualizar</th>
+                            <th>Borrar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -301,6 +303,12 @@
                             <td> <span th:text="${cliente.apellido2}"></span></td>
                             <td> <span th:text="${cliente.telefono}"></span></td>
                             <td> <span th:text="${cliente.correo}"></span></td>
+                            <td> <span><button class="button-guardar" data-id="${cliente.id_cliente}">Actualizar</button></span></td>
+                            <td>
+                                <form class="form-botones" th:action="@{/cliente/borrar/{id}(id=${cliente.id_cliente})}" method="post">
+                                    <button class="button-guardar" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">Borrar</button>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -322,6 +330,7 @@
                     btn.style.left = "calc(20% + 6px)";
                 }
             }
+
         </script>
     </body>
 </html>
