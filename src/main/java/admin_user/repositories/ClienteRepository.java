@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-    List<Cliente> findByNombreContaining(String nombre);
+    List<Cliente> findByNombreOrApellido1OrApellido2OrTelefono(String nombre, String apellido1, String apellido2, String telefono);
 }

@@ -15,7 +15,5 @@ public interface ClienteService {
     
     void deleteCliente(int id);
     
-    List<Cliente> searchClientesByNombre(String nombre);
-    
-    List<Cliente> getClienteByNombre(String nombre);
+    List<Cliente> getClienteByNombreOrApellido1OrApellido2OrTelefono(String nombre, String apellidos, String telefono);
 }

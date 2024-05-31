@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -43,12 +41,17 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public List<Cliente> searchClientesByNombre(String nombre) {
-        return clienteRepository.findByNombreContaining(nombre);
-    }
-
-    @Override
-    public List<Cliente> getClienteByNombre(String nombre) {
-        return clienteRepository.findByNombreContaining(nombre);
+    public List<Cliente> getClienteByNombreOrApellido1OrApellido2OrTelefono(String nombre, String apellidos, String telefono) {
+        String[] apellidoArray = apellidos.split("\\s+"); // Dividir el campo de apellidos en palabras separadas
+        String apellido1 = null;
+        String apellido2 = null;
+        if (apellidoArray.length > 0) {
+            apellido1 = apellidoArray[0]; // El primer elemento es el primer apellido
+            if (apellidoArray.length > 1) {
+                apellido2 = apellidoArray[1]; // El segundo elemento es el segundo apellido
+            }
+        }
+        // Llamar al método de búsqueda en el repositorio
+        return clienteRepository.findByNombreOrApellido1OrApellido2OrTelefono(nombre, apellido1, apellido2, telefono);
     }
 }

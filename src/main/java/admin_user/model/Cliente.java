@@ -1,7 +1,6 @@
 package admin_user.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "cliente", uniqueConstraints = @UniqueConstraint(columnNames = "correo"))
@@ -13,8 +12,8 @@ public class Cliente {
     private int id_cliente;
     
     private String nombre;
-    private String Apellido1;
-    private String Apellido2;
+    private String apellido1;
+    private String apellido2;
     private String telefono;
     private String correo;
 
@@ -24,8 +23,8 @@ public class Cliente {
 
     public Cliente(int id_cliente, String nombre, String Apellido1, String Apellido2, String telefono, String correo) {
         this.nombre = nombre;
-        this.Apellido1 = Apellido1;
-        this.Apellido2 = Apellido2;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
         this.telefono = telefono;
         this.correo = correo;
     }
@@ -47,19 +46,19 @@ public class Cliente {
     }
 
     public String getApellido1() {
-        return Apellido1;
+        return apellido1;
     }
 
     public void setApellido1(String primerApellido) {
-        this.Apellido1 = primerApellido;
+        this.apellido1 = primerApellido;
     }
 
     public String getApellido2() {
-        return Apellido2;
+        return apellido2;
     }
 
     public void setApellido2(String segundoApellido) {
-        this.Apellido2 = segundoApellido;
+        this.apellido2 = segundoApellido;
     }
 
     public String getTelefono() {

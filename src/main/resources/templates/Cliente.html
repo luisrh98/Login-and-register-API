@@ -272,13 +272,13 @@
                 </form>
 
                 <h2>Buscar Cliente</h2>
-                <form th:action="@{/clientes/search}" method="get" th:object="${cliente}">
-                    <label for="search">Nombre:</label>
-                    <input type="text" id="search" name="nombre" />
+                <form th:action="@{/cliente/buscar}" method="get" th:object="${cliente}">
+                    <input type="text" id="buscar" name="nombre" placeholder="Nombre"/>
+                    <input type="text" id="buscar" name="apellidos" placeholder="Apellidos"/>
+                    <input type="text" id="buscar" name="telefono" placeholder="Teléfono"/>
                     <button class="button-guardar" type="submit">Buscar</button>
                 </form>
 
-                <!-- Contenido principal aquí -->
             </div>
             <div class="tabla">
                 <h2>Lista de Clientes</h2>
