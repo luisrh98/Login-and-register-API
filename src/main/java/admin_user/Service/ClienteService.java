@@ -18,4 +18,6 @@ public interface ClienteService {
     Cliente obtenerClientePorId(int id_cliente);
     
     List<Cliente> getClienteByNombreOrApellido1OrApellido2OrTelefono(String nombre, String apellidos, String telefono);
+    
+    Cliente update(Cliente cliente);
 }

@@ -67,4 +67,20 @@ public class ClienteServiceImpl implements ClienteService {
     public Cliente getClienteById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public Cliente update(Cliente cliente) {
+        Optional<Cliente> existingCliente = clienteRepository.findById(cliente.getId_cliente());
+        if (existingCliente.isPresent()) {
+            Cliente updatedCliente = existingCliente.get();
+            updatedCliente.setNombre(cliente.getNombre());
+            updatedCliente.setApellido1(cliente.getApellido1());
+            updatedCliente.setApellido2(cliente.getApellido2());
+            updatedCliente.setTelefono(cliente.getTelefono());
+            updatedCliente.setCorreo(cliente.getCorreo());
+            return clienteRepository.save(updatedCliente);
+        } else {
+            throw new IllegalArgumentException("Cliente no encontrado: " + cliente.getId_cliente());
+        }
+    }
 }
