@@ -52,12 +52,6 @@ public class ClienteController {
         return "cliente";
     }
 
-    @GetMapping("/{id_cliente}")
-    @ResponseBody
-    public Cliente getClienteById(@PathVariable int id_cliente) {
-        return clienteService.getClienteById(id_cliente);
-    }
-
     @PostMapping("/borrar/{id}")
     public String eliminarCliente(@PathVariable("id") int id_cliente) {
         clienteService.eliminarCliente(id_cliente);

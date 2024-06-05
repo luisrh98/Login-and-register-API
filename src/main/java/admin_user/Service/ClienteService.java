@@ -9,8 +9,6 @@ public interface ClienteService {
     
     List<Cliente> getAllClientes();
     
-    Cliente getClienteById(int id);
-    
     Cliente saveCliente(ClienteDto clienteDto);
     
     void eliminarCliente(int id_cliente);

@@ -11,6 +11,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_usuario;
     
+    private Integer id_cliente;
+
+    public Integer getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
+    }
     private String usuario;
     private String password;
     private String correo;

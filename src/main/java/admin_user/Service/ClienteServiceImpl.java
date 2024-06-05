@@ -62,11 +62,6 @@ public class ClienteServiceImpl implements ClienteService {
         // Llamar al método de búsqueda en el repositorio
         return clienteRepository.findByNombreOrApellido1OrApellido2OrTelefono(nombre, apellido1, apellido2, telefono);
     }
-
-    @Override
-    public Cliente getClienteById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     @Override
     public Cliente update(Cliente cliente) {
