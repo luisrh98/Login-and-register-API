@@ -4,70 +4,72 @@ import admin_user.Service.ClienteService;
 import admin_user.dto.ClienteDto;
 import admin_user.model.Cliente;
 import admin_user.repositories.ClienteRepository;
+import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
-
+ 
     @Autowired
     private ClienteService clienteService;
-
+ 
     @PostMapping
-    public String saveCliente(@ModelAttribute("cliente") ClienteDto clienteDto) {
-        Cliente cliente = new Cliente();
-        cliente.setNombre(clienteDto.getNombre());
-        cliente.setApellido1(clienteDto.getApellido1());
-        cliente.setApellido2(clienteDto.getApellido2());
-        cliente.setTelefono(clienteDto.getTelefono());
-        cliente.setCorreo(clienteDto.getCorreo());
-
-        clienteService.saveCliente(clienteDto);
-        return "redirect:/cliente";
+    public String saveUsuario(@ModelAttribute("usuarios") UsuarioDto usuarioDto) {
+        Usuario usuario = new Usuario();
+        usuario.setNombre(usuarioDto.getNombre());
+        usuario.setApellido1(usuarioDto.getApellido1());
+        usuario.setApellido2(usuarioDto.getApellido2());
+        usuario.setTelefono(usuarioDto.getTelefono());
+        usuario.setCorreo(usuarioDto.getCorreo());
+ 
+        clienteService.saveUsuario(usuarioDto);
+        return "redirect:/usuarios";
     }
-
+ 
     @GetMapping
     public String getAllClientes(Model model) {
-        List<Cliente> clientes = clienteService.getAllClientes();
-        model.addAttribute("clientes", clientes);
-        model.addAttribute("cliente", new ClienteDto());
-        return "cliente";
+        List<Usuario> usuarios = usuarioService.getAllUsuarios();
+        model.addAttribute("usuarios", clientes);
+        model.addAttribute("usuario", new UsuarioDto());
+        return "usuario";
     }
-
-    @GetMapping("/{id_cliente}")
+ 
+    @GetMapping("/{id_usuario}")
     @ResponseBody
-    public Cliente getClienteById(@PathVariable int id_cliente) {
-        return clienteService.getClienteById(id_cliente);
+    public Usuario getUsuarioById(@PathVariable int id_usuario) {
+        return usuarioService.getUsuarioById(id_usuario);
     }
-
+ 
     @PostMapping("/borrar/{id}")
-    public String eliminarCliente(@PathVariable("id") int id_cliente) {
-        clienteService.eliminarCliente(id_cliente);
-        return "redirect:/cliente";
+    public String eliminarUsuario(@PathVariable("id") int id_usuario) {
+        usuarioService.eliminarUsuario(id_usuario);
+        return "redirect:/usuario";
     }
-
+ 
     @GetMapping("/buscar")
-    public String searchClientes(
+    public String searchUsuarios(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String apellidos,
             @RequestParam(required = false) String telefono,
             Model model) {
-        List<Cliente> clientes = clienteService.getClienteByNombreOrApellido1OrApellido2OrTelefono(nombre, apellidos, telefono);
-        model.addAttribute("clientes", clientes);
-        model.addAttribute("cliente", new ClienteDto());
-        return "cliente";
+        List<Usuario> usuarios = usuarioService.getUsuariosByNombreOrApellido1OrApellido2OrTelefono(nombre, apellidos, telefono);
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("usuario", new UsuarioDto());
+        return "usuarios";
     }
-    
     @PostMapping("/actualizar")
-    public String actualizarCliente(Cliente cliente, RedirectAttributes attributes) {
-        clienteService.update(cliente);
-        attributes.addFlashAttribute("mensaje", "Cliente actualizado exitosamente");
-        return "redirect:/cliente";
+    public String actualizarUsuario(Usuario usuario, RedirectAttributes attributes) {
+        usuarioService.update(usuario);
+        attributes.addFlashAttribute("mensaje", "Usuario actualizado exitosamente");
+        return "redirect:/usuarios";
     }
 }

@@ -263,7 +263,7 @@
 
     <body>
         <header>
-            <a href="https://beteling.es/" ><img src="images/Logo-GRUPO-BETELING_inv_HZ_web.webp" alt="70" width="170"></a>
+            <a href="https://beteling.es/" ><img src="images/Logo-GRUPO-BETELING_inv_HZ_web.webp" alt="70" width="170" target="_blank"></a>
             <h1>GRUPO BETELING</h1>
             <div class="social">
                 <a aria-label="FACEBOOK" class="theme-dark facebook"
@@ -281,16 +281,16 @@
             </div>
         </header>
         <nav id="menu">
-            <h2>¡Bienvenido</h2>
+            <h2>¡Bienvenido </h2>
             <a href="#"><img src="" alt="">foto</a>
             <ul>
-                <li><a href="#">Iniciar Sesión</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="/admin-page">Inicio</a></li>
                 <li><a href="#">Sobre Nosotros</a></li>
             </ul>
             <span sec:authorize="isAuthenticated">
                 <a th:href="@{/logout}">
-                    Logout
-
+                    Cerrar sesión
                 </a>
             </span>
         </nav>
@@ -298,52 +298,42 @@
 
         <div class="main-content">
             <div class="main">
-                <h2>Panel de cliente</h2>
-                <h1>Clientes</h1>
-                <form class="form" th:object="${cliente}" th:action="@{/cliente}" method="post">
-                    <input type="text" th:field="*{nombre}" placeholder="Nombre"/>
-                    <input type="text" th:field="*{apellido1}" placeholder="Apellido 1"/>
-                    <input type="text" th:field="*{apellido2}" placeholder="Apellido 2"/>
-                    <input type="text" th:field="*{telefono}" placeholder="Teléfono"/>
-                    <input type="text" th:field="*{correo}" placeholder="Correo electrónico"/>
-                    <button class="button-guardar" type="submit">Guardar</button>
-                </form>
+                <h2>Panel de Usuario</h2>
+                <h1>Usuarios</h1>
 
-                <h2>Buscar Cliente</h2>
-                <form class="form" th:action="@{/cliente/buscar}" method="get" th:object="${cliente}">
-                    <input type="text" id="buscar" name="nombre" placeholder="Nombre"/>
-                    <input type="text" id="buscar" name="apellidos" placeholder="Apellidos"/>
-                    <input type="text" id="buscar" name="telefono" placeholder="Teléfono"/>
+                <h2>Buscar Usuario</h2>
+                <form class="form" th:action="@{/usuarios/buscar}" method="get" th:object="${usuario}">
+                    <input type="text" id="buscar" name="usuario" placeholder="Nombre de usuario"/>
+                    <input type="text" id="buscar" name="correo" placeholder="Correo"/>
+                    <input type="text" id="buscar" name="id_cliente" placeholder="Id Cliente"/>
                     <button class="button-guardar" type="submit">Buscar</button>
                 </form>
 
             </div>
             <div class="tabla">
-                <h2>Lista de Clientes</h2>
+                <h2>Lista de Usuarios</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Primer Apellido</th>
-                            <th>Segundo Apellido</th>
-                            <th>Teléfono</th>
+                            <th>Id_Usuario</th>
+                            <th>Cliente</th>
+                            <th>Usuario</th>
                             <th>Correo</th>
+                            <th>Rol</th>
                             <th>Actualizar</th>
                             <th>Borrar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="cliente : ${clientes}">
-                            <td><span th:text="${cliente.id_cliente}"></span></td>
-                            <td><span th:text="${cliente.nombre}"></span></td>
-                            <td> <span th:text="${cliente.apellido1}"></span></td>
-                            <td> <span th:text="${cliente.apellido2}"></span></td>
-                            <td> <span th:text="${cliente.telefono}"></span></td>
-                            <td> <span th:text="${cliente.correo}"></span></td>
-                            <td> <span><button class="button-actualizar" data-id="${cliente.id_cliente}">Actualizar</button></span></td>
+                        <tr th:each="usuario : ${usuarios}">
+                            <td><span th:text="${usuario.id_usuario}"></span></td>
+                            <td><span th:text="${usuario.id_cliente}"></span></td>
+                            <td><span th:text="${usuario.usuario}"></span></td>
+                            <td> <span th:text="${usuario.correo}"></span></td>
+                            <td> <span th:text="${usuario.roles}"></span></td>
+                            <td> <span><button class="button-actualizar" data-id="${usuario.id_usuario}">Actualizar</button></span></td>
                             <td>
-                                <form class="form-botones" th:action="@{/cliente/borrar/{id}(id=${cliente.id_cliente})}" method="post">
+                                <form class="form-botones" th:action="@{/usuarios/borrar/{id}(id=${usuario.id_usuario})}" method="post">
                                     <button class="button-guardar" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">Borrar</button>
                                 </form>
                             </td>
@@ -361,18 +351,15 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Actualizar Cliente</h2>
-                <form class="form" th:object="${cliente}" id="updateForm" th:action="@{/cliente/actualizar}" method="post">
+                <form class="form" th:object="${usuario}" id="updateForm" th:action="@{/usuarios/actualizar}" method="post">
+                    <input type="hidden" id="updateId" name="id_usuario"/>
                     <input type="hidden" id="updateId" name="id_cliente"/>
-                    <label for="updateNombre">Nombre:</label>
-                    <input type="text" id="updateNombre" name="nombre"/>
-                    <label for="updateApellido1">Primer Apellido:</label>
-                    <input type="text" id="updateApellido1" name="apellido1"/>
-                    <label for="updateApellido2">Segundo Apellido:</label>
-                    <input type="text" id="updateApellido2" name="apellido2"/>
-                    <label for="updateTelefono">Teléfono:</label>
-                    <input type="text" id="updateTelefono" name="telefono"/>
-                    <label for="updateCorreo">Correo:</label>
-                    <input type="text" id="updateCorreo" name="correo"/>
+                    <label for="updateNombre">Usuario:</label>
+                    <input type="text" id="updateNombre" name="usuario"/>
+                    <label for="updateApellido1">Correo</label>
+                    <input type="text" id="updateApellido1" name="correo"/>
+                    <label for="updateApellido2">Rol</label>
+                    <input type="text" id="updateApellido2" name="roles"/>
                     <button type="submit" class="button-actualizar" onclick="return confirm('¿Confirmar cambios?')">Actualizar</button>
                 </form>
             </div>
