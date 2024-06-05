@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -14,4 +15,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     
     @Query(value="delete from cliente where id_cliente = :id_cliente", nativeQuery =true)
      void deleteclientes(@Param("id_cliente") int id_cliente);
+     
+    Optional<Cliente> findByCorreoOrTelefono(String correo, String telefono);
 }

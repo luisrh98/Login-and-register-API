@@ -18,4 +18,6 @@ public interface UserService {
     User update(User user);
     
     List<User> getAllUsuarios();
+    
+    List <UserDto> obtenerUsuarios();
 }

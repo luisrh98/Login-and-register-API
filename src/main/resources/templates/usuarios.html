@@ -350,30 +350,30 @@
         <div id="updateModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Actualizar Cliente</h2>
+                <h2>Actualizar Usuario</h2>
                 <form class="form" th:object="${usuario}" id="updateForm" th:action="@{/usuarios/actualizar}" method="post">
-                    <input type="hidden" id="updateId" name="id_usuario"/>
-                    <input type="hidden" id="updateId" name="id_cliente"/>
-                    <label for="updateNombre">Usuario:</label>
-                    <input type="text" id="updateNombre" name="usuario"/>
-                    <label for="updateApellido1">Correo</label>
-                    <input type="text" id="updateApellido1" name="correo"/>
-                    <label for="updateApellido2">Rol</label>
-                    <input type="text" id="updateApellido2" name="roles"/>
+                    <input type="hidden" id="updateIdUsuario" name="id_usuario"/>
+                    <input type="number" id="updateIdCliente" name="id_cliente"/>
+                    <label for="updateUsuario">Usuario:</label>
+                    <input type="text" id="updateUsuario" name="usuario"/>
+                    <label for="updateCorreo">Correo:</label>
+                    <input type="text" id="updateCorreo" name="correo"/>
+                    <label for="updateRoles">Rol:</label>
+                    <input type="text" id="updateRoles" name="roles"/>
                     <button type="submit" class="button-actualizar" onclick="return confirm('¿Confirmar cambios?')">Actualizar</button>
                 </form>
             </div>
         </div>
 
         <script>
-            function openModal(cliente) {
-                console.log("Opening modal with cliente:", cliente); // Debugging line
-                document.getElementById("updateId").value = cliente.id_cliente;
-                document.getElementById("updateNombre").value = cliente.nombre;
-                document.getElementById("updateApellido1").value = cliente.apellido1;
-                document.getElementById("updateApellido2").value = cliente.apellido2;
-                document.getElementById("updateTelefono").value = cliente.telefono;
-                document.getElementById("updateCorreo").value = cliente.correo;
+            function openModal(user) {
+                console.log("Opening modal with usuario:", user);
+                document.getElementById("updateIdUsuario").value = user.id_usuario;
+                document.getElementById("updateIdCliente").value = user.id_cliente;
+                document.getElementById("updateUsuario").value = user.usuario;
+                document.getElementById("updateCorreo").value = user.correo;
+                document.getElementById("updateRoles").value = user.roles;
+
                 document.getElementById("updateModal").style.display = "block";
             }
 
@@ -384,26 +384,24 @@
             document.querySelectorAll('.button-actualizar').forEach(button => {
                 button.addEventListener('click', function () {
                     const row = this.parentElement.parentElement.parentElement;
-                    const cliente = {
-                        id_cliente: row.cells[0].innerText,
-                        nombre: row.cells[1].innerText,
-                        apellido1: row.cells[2].innerText,
-                        apellido2: row.cells[3].innerText,
-                        telefono: row.cells[4].innerText,
-                        correo: row.cells[5].innerText
+                    const user = {
+                        id_usuario: row.cells[0].innerText,
+                        id_cliente: row.cells[1].innerText,
+                        usuario: row.cells[2].innerText,
+                        correo: row.cells[3].innerText,
+                        roles: row.cells[4].innerText
                     };
-                    openModal(cliente);
+                    openModal(user);
                 });
             });
 
             document.querySelector('.close').addEventListener('click', closeModal);
 
             window.addEventListener('click', function (event) {
-                if (event.target == document.getElementById('updateModal')) {
+                if (event.target === document.getElementById('updateModal')) {
                     closeModal();
                 }
             });
-
             function toggleMenu() {
                 var nav = document.getElementById("menu");
                 var btn = document.querySelector(".menu-btn");
