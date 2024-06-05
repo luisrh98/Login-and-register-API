@@ -17,6 +17,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     
     List<User> findByUsuarioOrCorreo(String usuario, String correo);
     
-    @Query(value="delete from cliente where id_cliente = :id_cliente", nativeQuery =true)
+    @Query(value="delete from usuarios where id_usuario = :id_usuario", nativeQuery =true)
      void deleteclientes(@Param("id_usuario") int id_usuario);
 }

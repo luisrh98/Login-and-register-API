@@ -35,14 +35,14 @@ public class UsuarioController {
         List<User> usuarios = usuarioService.getAllUsuarios();
         model.addAttribute("usuarios", usuarios);
         model.addAttribute("usuario", new UserDto());
-        return "usuario";
+        return "usuarios";
     }
  
  
     @PostMapping("/borrar/{id}")
     public String eliminarUsuario(@PathVariable("id") int id_usuario) {
         usuarioService.eliminarUsuario(id_usuario);
-        return "redirect:/usuario";
+        return "redirect:/usuarios";
     }
  
     @GetMapping("/buscar")

@@ -2,7 +2,6 @@ package admin_user.controller;
 
 import admin_user.Service.UserService;
 import admin_user.dto.UserDto;
-import admin_user.model.Cliente;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
