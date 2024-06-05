@@ -269,10 +269,11 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="card-content">
-                            <h3>Admin</h3>
+                            <h3>Usuarios</h3>
                             <p>7</p>
                         </div>
                     </button>
+                    <a href="usuarios.html" target="_blank"></a>
                     <button class="card">
                         <div class="card-image">
                             <i class="fas fa-chalkboard-teacher"></i>
@@ -348,18 +349,18 @@
                     const title = card.querySelector('.card-content h3').textContent;
 
                     // Redirect to the corresponding page based on the title
-                    if (title === 'Admin') {
-                        window.location.href = 'admin.html'; // Replace with your admin page URL
+                    if (title === 'Usuarios') {
+                        window.location.href = 'usuarios'; // Replace with your admin page URL
                     } else if (title === 'Ingenieros') {
-                        window.location.href = 'ingenieros.html'; // Replace with your teacher page URL
+                        window.location.href = 'ingenieros'; // Replace with your teacher page URL
                     } else if (title === 'Técnicos') {
-                        window.location.href = 'tecnicos.html'; // Replace with your student page URL
+                        window.location.href = 'tecnicos'; // Replace with your student page URL
                     } else if (title === 'Funcionalidades') {
-                        window.location.href = 'funcionalidades.html'; // Replace with your representative page URL
+                        window.location.href = 'funcionalidades'; // Replace with your representative page URL
                     } else if (title === 'Clientes') {
                         window.location.href = 'cliente'; // Replace with your representative page URL
                     } else if (title === 'Incidencias') {
-                        window.location.href = 'incidencias.html'; // Replace with your representative page URL
+                        window.location.href = 'incidencias'; // Replace with your representative page URL
                     }
                 });
             });
