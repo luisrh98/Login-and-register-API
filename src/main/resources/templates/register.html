@@ -21,72 +21,80 @@
 
         <!-- Top content -->
         <div class="top-content">
-        	
+
             <div class="inner-bg">
                 <div class="container">
-                	
+
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
                             <h1><strong>Beteling</strong> Consultoría &amp; Ingeniería</h1>
                         </div>
                     </div>
-                    
+
                     <div class="row">
-                        	
+
                         <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-                        		<div class="form-top">
-                                            <div class="message" th:if="${message != null}">
-                                                [[${message}]]
-                                            </div>
-	                        		<div class="form-top-left">
-	                        			<h3>Regístrate ahora</h3>
-	                            		<p>Complete el formulario para obtener acceso instantáneo:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-pencil"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form th:action="@{/registration}" method="post" role= "form" th:object="${user}" class="registration-form">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="usuario">Username</label>
-				                        	<input th:field="*{usuario}" type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="correo">Email</label>
-				                        	<input th:field="*{correo}" type="email" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="password">Password</label>
-				                        	<input th:field="*{password}" type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-				                        </div>
-				                        <button type="submit" class="btn" value="Register">Sign me up!</button>
-				                    </form>
-			                    </div>
-                        	</div>
-                        	
+
+                            <div class="form-box">
+                                <div class="form-top">
+                                    <div class="message" th:if="${message != null}">
+                                        [[${message}]]
+                                    </div>
+                                    <div class="form-top-left">
+                                        <h3>Regístrate ahora</h3>
+                                        <p>Complete el formulario para obtener acceso instantáneo:</p>
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom">
+                                    <form th:action="@{/registration}" method="post" role= "form" th:object="${user}" class="registration-form">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="usuario">Nombre de usuario</label>
+                                            <input th:field="*{usuario}" type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="correo">Email</label>
+                                            <input th:field="*{correo}" type="email" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="telefono">Telefono</label>
+                                            <input type="text" name="form-telefono" placeholder="Telefono" class="form-telefono form-control" id="form-telefono">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="password">Contraseña</label>
+                                            <input th:field="*{password}" type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password" pattern="(?=.*[A-Z])(?=.*[!@#$&*]).{10,}" title="Debe contener al menos 10 caracteres, una mayúscula y un carácter especial">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="confirm-password">Repite contraseña</label>
+                                            <input type="password" name="form-confirm-password" placeholder="Repite la contraseña" class="form-password form-control" id="form-confirm-password">
+                                        </div>
+                                        <button type="submit" class="btn" value="Register">Registrarse</button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </div>
 
         <!-- Footer -->
         <footer>
-        	<div class="container">
-        		<div class="row">
-        			
-        			<div class="col-sm-8 col-sm-offset-2">
-        				<div class="footer-border"></div>
-        				<p>&copy; 2024 Beteling. Todos los derechos reservados.</p>
-        			</div>
-        			
-        		</div>
-        	</div>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <div class="footer-border"></div>
+                        <p>&copy; 2024 Beteling. Todos los derechos reservados.</p>
+                    </div>
+
+                </div>
+            </div>
         </footer>
 
         <!-- Javascript -->
@@ -94,6 +102,25 @@
         <script src="css/bootstrap/js/bootstrap.min.js"></script>
         <script src="js/jquery.backstretch.min.js"></script>
         <script src="js/scripts.js"></script>
+        <script>
+            //Script para confirmar contraseña
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.querySelector('.registration-form');
+                form.addEventListener('submit', function (event) {
+                    const password = document.getElementById('form-password').value;
+                    const confirmPassword = document.getElementById('form-confirm-password').value;
+                    const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$&*]).{10,}$/;
+
+                    if (!passwordPattern.test(password)) {
+                        event.preventDefault();
+                        alert('La contraseña debe tener al menos 10 caracteres, una mayúscula y un carácter especial.');
+                    } else if (password !== confirmPassword) {
+                        event.preventDefault();
+                        alert('Las contraseñas no coinciden.');
+                    }
+                });
+            });
+        </script>
 
     </body>
 

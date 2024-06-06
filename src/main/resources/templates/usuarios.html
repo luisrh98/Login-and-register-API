@@ -201,7 +201,10 @@
                 color: #555;
             }
 
-            input,
+            input[type="text"],
+            input[type="tel"],
+            input[type="email"],
+            input[type="number"],
             select{
                 width: 100%;
                 padding: 8px;
@@ -294,7 +297,6 @@
             </span>
         </nav>
         <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
-
         <div class="main-content">
             <div class="main">
                 <h2>Panel de Usuario</h2>
@@ -303,7 +305,7 @@
                 <h2>Buscar Usuario</h2>
                 <form class="form" th:action="@{/usuarios/buscar}" method="get" th:object="${usuario}">
                     <input type="text" id="buscar" name="usuario" placeholder="Nombre de usuario"/>
-                    <input type="email" id="buscar" name="correo" placeholder="Correo"/>
+                    <input type="text" id="buscar" name="correo" placeholder="Correo"/>
                     <input type="text" id="buscar" name="id_cliente" placeholder="Id Cliente"/>
                     <button class="button-guardar" type="submit">Buscar</button>
                 </form>
@@ -319,6 +321,7 @@
                             <th>Usuario</th>
                             <th>Correo</th>
                             <th>Rol</th>
+                            <th>Teléfono</th>
                             <th>Actualizar</th>
                             <th>Borrar</th>
                         </tr>
@@ -330,6 +333,7 @@
                             <td><span th:text="${usuario.usuario}"></span></td>
                             <td> <span th:text="${usuario.correo}"></span></td>
                             <td> <span th:text="${usuario.roles}"></span></td>
+                            <td> <span th:text="${usuario.telefono}"></span></td>
                             <td> <span><button class="button-actualizar" data-id="${usuario.id_usuario}">Actualizar</button></span></td>
                             <td>
                                 <form class="form-botones" th:action="@{/usuarios/borrar/{id}(id=${usuario.id_usuario})}" method="post">
@@ -347,25 +351,27 @@
         </div>
         <!-- Modal para actualizar cliente -->
         <div id="updateModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Actualizar Usuario</h2>
-        <form class="form" th:object="${usuario}" id="updateForm" th:action="@{/usuarios/actualizar}" method="post">
-            <input type="hidden" id="updateIdUsuario" name="id_usuario"/>
-            <input type="number" id="updateIdCliente" name="id_cliente"/>
-            <label for="updateUsuario">Usuario:</label>
-            <input type="text" id="updateUsuario" name="usuario"/>
-            <label for="updateCorreo">Correo:</label>
-            <input type="email" id="updateCorreo" name="correo"/>
-            <label for="updateRoles">Rol:</label>
-            <select id="updateRoles" name="roles">
-                <option value="USER" th:selected="${usuario.roles == 'USER'}">USER</option>
-                <option value="ADMIN" th:selected="${usuario.roles == 'ADMIN'}">ADMIN</option>
-            </select>
-            <button type="submit" class="button-actualizar" onclick="return confirm('¿Confirmar cambios?')">Actualizar</button>
-        </form>
-    </div>
-</div>
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Actualizar Usuario</h2>
+                <form class="form" th:object="${usuario}" id="updateForm" th:action="@{/usuarios/actualizar}" method="post">
+                    <input type="hidden" id="updateIdUsuario" name="id_usuario"/>
+                    <input type="number" id="updateIdCliente" name="id_cliente"/>
+                    <label for="updateUsuario">Usuario:</label>
+                    <input type="text" id="updateUsuario" name="usuario"/>
+                    <label for="updateCorreo">Correo:</label>
+                    <input type="text" id="updateCorreo" name="correo"/>
+                    <label for="updateRoles">Rol:</label>
+                    <select id="updateRoles" name="roles">
+                        <option value="USER" th:selected="${usuario.roles == 'USER'}">USER</option>
+                        <option value="ADMIN" th:selected="${usuario.roles == 'ADMIN'}">ADMIN</option>
+                    </select>
+                    <label for="updateRoles">Telefono:</label>
+                    <input type="text" id="updateTelefono" name="telefono"/>
+                    <button type="submit" class="button-actualizar" onclick="return confirm('¿Confirmar cambios?')">Actualizar</button>
+                </form>
+            </div>
+        </div>
 
         <script>
             function openModal(user) {
