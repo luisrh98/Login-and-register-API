@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="form-bottom">
-                                    <form th:action="@{/registration}" method="post" role= "form" th:object="${user}" class="registration-form">
+                                    <form th:action="@{/registration}" id="form_registro" method="post" role= "form" th:object="${user}" class="registration-form">
                                         <div class="form-group">
                                             <label class="sr-only" for="usuario">Nombre de usuario</label>
                                             <input th:field="*{usuario}" type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
@@ -103,6 +103,28 @@
         <script src="js/jquery.backstretch.min.js"></script>
         <script src="js/scripts.js"></script>
         <script>
+            document.querySelector('#form_registro').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/registration', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => {
+                if (response.ok) {
+                    closeModal(); // Cerrar modal si la actualización fue exitosa
+                } else {
+                    return response.text(); // Devolver el mensaje de error si la actualización falló
+                }
+            })
+            .then(errorMessage => {
+                if(errorMessage) {
+                    alert(errorMessage); // Mostrar alerta con el mensaje de error si existe
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar solicitud:', error);
+            });
+        });
             //Script para confirmar contraseña
             document.addEventListener('DOMContentLoaded', function () {
                 const form = document.querySelector('.registration-form');

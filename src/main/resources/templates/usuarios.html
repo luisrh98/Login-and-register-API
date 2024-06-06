@@ -374,54 +374,77 @@
         </div>
 
         <script>
-            function openModal(user) {
-                console.log("Opening modal with usuario:", user);
-                document.getElementById("updateIdUsuario").value = user.id_usuario;
-                document.getElementById("updateIdCliente").value = user.id_cliente;
-                document.getElementById("updateUsuario").value = user.usuario;
-                document.getElementById("updateCorreo").value = user.correo;
-                document.getElementById("updateRoles").value = user.roles;
-
-                document.getElementById("updateModal").style.display = "block";
-            }
-
-            function closeModal() {
-                document.getElementById("updateModal").style.display = "none";
-            }
-
-            document.querySelectorAll('.button-actualizar').forEach(button => {
-                button.addEventListener('click', function () {
-                    const row = this.parentElement.parentElement.parentElement;
-                    const user = {
-                        id_usuario: row.cells[0].innerText,
-                        id_cliente: row.cells[1].innerText,
-                        usuario: row.cells[2].innerText,
-                        correo: row.cells[3].innerText,
-                        roles: row.cells[4].innerText
-                    };
-                    openModal(user);
-                });
-            });
-
-            document.querySelector('.close').addEventListener('click', closeModal);
-
-            window.addEventListener('click', function (event) {
-                if (event.target === document.getElementById('updateModal')) {
-                    closeModal();
-                }
-            });
-            function toggleMenu() {
-                var nav = document.getElementById("menu");
-                var btn = document.querySelector(".menu-btn");
-                if (nav.style.left === "0px") {
-                    nav.style.left = "-20%";
-                    btn.style.left = "6px";
+        document.querySelector('#updateForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/usuarios/actualizar', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => {
+                if (response.ok) {
+                    closeModal(); // Cerrar modal si la actualización fue exitosa
                 } else {
-                    nav.style.left = "0";
-                    btn.style.left = "calc(20% + 6px)";
+                    return response.text(); // Devolver el mensaje de error si la actualización falló
                 }
-            }
+            })
+            .then(errorMessage => {
+                if(errorMessage) {
+                    alert(errorMessage); // Mostrar alerta con el mensaje de error si existe
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar solicitud:', error);
+            });
+        });
 
-        </script>
+        function openModal(user) {
+            console.log("Opening modal with usuario:", user);
+            document.getElementById("updateIdUsuario").value = user.id_usuario;
+            document.getElementById("updateIdCliente").value = user.id_cliente;
+            document.getElementById("updateUsuario").value = user.usuario;
+            document.getElementById("updateCorreo").value = user.correo;
+            document.getElementById("updateRoles").value = user.roles;
+
+            document.getElementById("updateModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("updateModal").style.display = "none";
+        }
+
+        document.querySelectorAll('.button-actualizar').forEach(button => {
+            button.addEventListener('click', function () {
+                const row = this.parentElement.parentElement.parentElement;
+                const user = {
+                    id_usuario: row.cells[0].innerText,
+                    id_cliente: row.cells[1].innerText,
+                    usuario: row.cells[2].innerText,
+                    correo: row.cells[3].innerText,
+                    roles: row.cells[4].innerText
+                };
+                openModal(user);
+            });
+        });
+
+        document.querySelector('.close').addEventListener('click', closeModal);
+
+        window.addEventListener('click', function (event) {
+            if (event.target === document.getElementById('updateModal')) {
+                closeModal();
+            }
+        });
+
+        function toggleMenu() {
+            var nav = document.getElementById("menu");
+            var btn = document.querySelector(".menu-btn");
+            if (nav.style.left === "0px") {
+                nav.style.left = "-20%";
+                btn.style.left = "6px";
+            } else {
+                nav.style.left = "0";
+                btn.style.left = "calc(20% + 6px)";
+            }
+        }
+    </script>
     </body>
 </html>

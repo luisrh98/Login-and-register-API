@@ -299,53 +299,65 @@
 
         <div class="main-content">
             <div class="main">
-                <h2>Panel de cliente</h2>
-                <h1>Clientes</h1>
-                <form class="form" id="form_cliente" th:object="${cliente}" th:action="@{/cliente}" method="post">
-                    <input type="text" th:field="*{nombre}" placeholder="Nombre"/>
-                    <input type="text" th:field="*{apellido1}" placeholder="Apellido 1"/>
-                    <input type="text" th:field="*{apellido2}" placeholder="Apellido 2"/>
-                    <input type="text" th:field="*{telefono}" placeholder="Teléfono"/>
-                    <input type="text" th:field="*{correo}" placeholder="Correo electrónico"/>
+                <h2>Panel de proyecto</h2>
+                <h1>Proyectos</h1>
+                <form class="form" id="form_proyecto" th:object="${proyecto}" th:action="@{/proyecto}" method="post">
+                    <input type="text" th:field="*{id_proyecto}" placeholder="id_proyecto"/>
+                    <input type="text" th:field="*{id_cliente}" placeholder="id_cliente"/>
+                    <input type="text" th:field="*{id_tecnico}" placeholder="id_tecnico"/>
+                    <input type="text" th:field="*{id_comercial}" placeholder="id_comercial"/>
+                    <input type="text" th:field="*{fecha_inicio}" placeholder="fecha_inicio"/>
+                    <input type="text" th:field="*{fecha_fin}" placeholder="fecha_fin"/>
+                    <input type="text" th:field="*{comentario}" placeholder="comentario"/>
+                    <input type="text" th:field="*{id_funcionalidad}" placeholder="id_funcionalidad"/>
                     <button class="button-guardar" type="submit">Guardar</button>
                 </form>
 
-                <h2>Buscar Cliente</h2>
-                <form class="form" th:action="@{/cliente/buscar}" method="get" th:object="${cliente}">
-                    <input type="text" id="buscar" name="nombre" placeholder="Nombre"/>
-                    <input type="text" id="buscar" name="apellidos" placeholder="Apellidos"/>
-                    <input type="text" id="buscar" name="telefono" placeholder="Teléfono"/>
+                <h2>Buscar Proyecto</h2>
+                <form class="form" th:action="@{/proyecto/buscar}" method="get" th:object="${proyecto}">
+                    <input type="text" id="buscar" name="id_proyecto" placeholder="id_proyecto"/>
+                    <input type="text" id="buscar" name="id_cliente" placeholder="id_cliente"/>
+                    <input type="text" id="buscar" name="id_tecnico" placeholder="id_tecnico"/>
+                    <input type="text" id="buscar" name="id_comercial" placeholder="id_comercial"/>
+                    <input type="text" id="buscar" name="fecha_inicio" placeholder="fecha_inicio"/>
+                    <input type="text" id="buscar" name="fecha_fin" placeholder="fecha_fin"/>
                     <button class="button-guardar" type="submit">Buscar</button>
                 </form>
 
             </div>
             <div class="tabla">
-                <h2>Lista de Clientes</h2>
+                <h2>Lista de Proyecto</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Primer Apellido</th>
-                            <th>Segundo Apellido</th>
-                            <th>Teléfono</th>
-                            <th>Correo</th>
+                            <th>Id_cliente</th>
+                            <th>Id_ingeniero</th>
+                            <th>Id_tenico</th>
+                            <th>Id_comercial</th>
+                            <th>fecha_inicio</th>
+                            <th>fecha_fin</th>
+                            <th>comentario</th>
+                            <th>cod_funcionalidad</th>
                             <th>Actualizar</th>
                             <th>Borrar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="cliente : ${clientes}">
-                            <td><span th:text="${cliente.id_cliente}"></span></td>
-                            <td><span th:text="${cliente.nombre}"></span></td>
-                            <td> <span th:text="${cliente.apellido1}"></span></td>
-                            <td> <span th:text="${cliente.apellido2}"></span></td>
-                            <td> <span th:text="${cliente.telefono}"></span></td>
-                            <td> <span th:text="${cliente.correo}"></span></td>
-                            <td> <span><button class="button-actualizar" data-id="${cliente.id_cliente}">Actualizar</button></span></td>
+                        <tr th:each="proyecto : ${proyecto}">
+                            <td><span th:text="${proyecto.id_proyecto}"></span></td>
+                            <td><span th:text="${proyecto.id_cliente}"></span></td>
+                            <td><span th:text="${proyecto.Id_ingeniero}"></span></td>
+                            <td> <span th:text="${proyecto.Id_tenico}"></span></td>
+                            <td> <span th:text="${proyecto.Id_comercial}"></span></td>
+                            <td> <span th:text="${proyecto.fecha_inicio}"></span></td>
+                            <td> <span th:text="${proyecto.fecha_fin}"></span></td>
+                            <td> <span th:text="${proyecto.comentario}"></span></td>
+                            <td> <span th:text="${proyecto.cod_funcionalidad}"></span></td>
+                            <td> <span><button class="button-actualizar" data-id="${proyecto.id_proyecto}">Actualizar</button></span></td>
                             <td>
-                                <form class="form-botones" th:action="@{/cliente/borrar/{id}(id=${cliente.id_cliente})}" method="post">
-                                    <button class="button-guardar" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">Borrar</button>
+                                <form class="form-botones" th:action="@{/proyecto/borrar/{id}(id=${proyecto.id_proyecto})}" method="post">
+                                    <button class="button-guardar" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este proyecto?')">Borrar</button>
                                 </form>
                             </td>
                         </tr>
@@ -361,19 +373,25 @@
         <div id="updateModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Actualizar Cliente</h2>
-                <form class="form" th:object="${cliente}" id="updateForm" th:action="@{/cliente/actualizar}" method="post">
-                    <input type="hidden" id="updateId" name="id_cliente"/>
-                    <label for="updateNombre">Nombre:</label>
-                    <input type="text" id="updateNombre" name="nombre"/>
-                    <label for="updateApellido1">Primer Apellido:</label>
-                    <input type="text" id="updateApellido1" name="apellido1"/>
-                    <label for="updateApellido2">Segundo Apellido:</label>
-                    <input type="text" id="updateApellido2" name="apellido2"/>
-                    <label for="updateTelefono">Teléfono:</label>
-                    <input type="text" id="updateTelefono" name="telefono"/>
-                    <label for="updateCorreo">Correo:</label>
-                    <input type="text" id="updateCorreo" name="correo"/>
+                <h2>Actualizar Proyecto</h2>
+                <form class="form" th:object="${proyecto}" id="updateForm" th:action="@{/proyecto/actualizar}" method="post">
+                    <input type="hidden" id="updateId" name="id_proyecto"/>
+                    <label for="updateid_cliente">Id_cliente:</label>
+                    <input type="text" id="updateid_cliente" name="id_cliente"/>
+                    <label for="updateId_ingeniero">Id_ingeniero:</label>
+                    <input type="text" id="updateId_ingeniero" name="Id_ingeniero"/>
+                    <label for="updateId_tenico">Id_tenico:</label>
+                    <input type="text" id="updateId_tenico" name="Id_tenico"/>
+                    <label for="updateId_comercial">Id_comercial</label>
+                    <input type="text" id="updateId_comercial" name="Id_comercial"/>
+                    <label for="updatefecha_inicio">fecha_inicio</label>
+                    <input type="text" id="updatefecha_inicio" name="fecha_inicio"/>
+                    <label for="updatefecha_fin">fecha_fin</label>
+                    <input type="text" id="updatefecha_fin" name="fecha_fin"/>
+                    <label for="updatecomentario">comentario</label>
+                    <input type="text" id="updatecomentario" name="comentario"/>
+                    <label for="updatecod_funcionalidad">cod_funcionalidad</label>
+                    <input type="text" id="updatecod_funcionalidad" name="cod_funcionalidad"/>
                     <button type="submit" class="button-actualizar" onclick="return confirm('¿Confirmar cambios?')">Actualizar</button>
                 </form>
             </div>
@@ -382,7 +400,7 @@
         <script>
             document.querySelector('#updateForm').addEventListener('submit', function (event) {
                 event.preventDefault();
-                fetch('/cliente/actualizar', {
+                fetch('/proyecto/actualizar', {
                     method: 'POST',
                     body: new FormData(this)
                 })
@@ -403,13 +421,16 @@
                         });
             });
             function openModal(cliente) {
-                console.log("Opening modal with cliente:", cliente); // Debugging line
-                document.getElementById("updateId").value = cliente.id_cliente;
-                document.getElementById("updateNombre").value = cliente.nombre;
-                document.getElementById("updateApellido1").value = cliente.apellido1;
-                document.getElementById("updateApellido2").value = cliente.apellido2;
-                document.getElementById("updateTelefono").value = cliente.telefono;
-                document.getElementById("updateCorreo").value = cliente.correo;
+                console.log("Opening modal with proyecto:", proyecto); // Debugging line
+                document.getElementById("updateId").value = proyecto.id_proyecto;
+                document.getElementById("updateid_cliente").value = proyecto.id_cliente;
+                document.getElementById("updateId_ingeniero").value = proyecto.id_ingeniero;
+                document.getElementById("updateId_tenico").value = proyecto.id_tecnico;
+                document.getElementById("updateId_comercial").value = proyecto.id_comercial;
+                document.getElementById("updatefecha_inicio").value = proyecto.fecha_inicio;
+                document.getElementById("updatefecha_fin").value = proyecto.fecha_fin;
+                document.getElementById("updatecomentario").value = proyecto.comentario;
+                document.getElementById("updatecod_funcionalidad").value = proyecto.cod_funcionalidad;
                 document.getElementById("updateModal").style.display = "block";
             }
 
@@ -420,15 +441,17 @@
             document.querySelectorAll('.button-actualizar').forEach(button => {
                 button.addEventListener('click', function () {
                     const row = this.parentElement.parentElement.parentElement;
-                    const cliente = {
-                        id_cliente: row.cells[0].innerText,
-                        nombre: row.cells[1].innerText,
-                        apellido1: row.cells[2].innerText,
-                        apellido2: row.cells[3].innerText,
-                        telefono: row.cells[4].innerText,
-                        correo: row.cells[5].innerText
+                    const proyecto = {
+                        id_proyecto: row.cells[0].innerText,
+                        id_cliente: row.cells[1].innerText,
+                        id_ingeniero: row.cells[2].innerText,
+                        id_comercial: row.cells[3].innerText,
+                        fecha_inicio: row.cells[4].innerText,
+                        fecha_fin: row.cells[5].innerText,
+                        comentario: row.cells[6].innerText,
+                        cod_funcionalidad: row.cells[7].innerText
                     };
-                    openModal(cliente);
+                    openModal(proyecto);
                 });
             });
 
