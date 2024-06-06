@@ -26,7 +26,7 @@ public class User {
         this.password = password;
         this.correo = correo;
         this.telefono = telefono;
-        this.roles = roles;
+        this.roles = "USER";
     }
 
     public Integer getId_usuario() {
