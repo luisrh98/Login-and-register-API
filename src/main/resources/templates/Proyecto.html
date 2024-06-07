@@ -368,7 +368,7 @@
                 <p>Información de anuncios aquí...</p>
             </div>
         </div>
-        <!-- Modal para actualizar cliente -->
+        <!-- Modal para actualizar PROYECTO -->
         <div id="updateModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -405,7 +405,7 @@
                 })
                         .then(response => {
                             if (response.ok) {
-                                closeModal(); // Cerrar modal si la actualización fue exitosa
+                                window.location.href = '/proyecto';// Cerrar modal si la actualización fue exitosa
                             } else {
                                 return response.text(); // Devolver el mensaje de error si la actualización falló
                             }
@@ -419,7 +419,7 @@
                             console.error('Error al enviar solicitud:', error);
                         });
             });
-            function openModal(cliente) {
+            function openModal(proyecto) {
                 console.log("Opening modal with proyecto:", proyecto); // Debugging line
                 document.getElementById("updateId").value = proyecto.idProyecto;
                 document.getElementById("updateid_cliente").value = proyecto.idCliente;
