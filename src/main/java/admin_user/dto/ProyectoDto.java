@@ -28,19 +28,6 @@ public class ProyectoDto {
         this.codFuncionalidad = codFuncionalidad;
     }
 
-    
-
-    public ProyectoDto(Proyecto p) {
-        this.idCliente = p.getIdCliente();
-        this.idIngeniero = p.getIdIngeniero();
-        this.idTecnico = p.getIdTecnico();
-        this.idComercial = p.getIdComercial();
-        this.fechaInicio = p.getFechaInicio();
-        this.fechaFin = p.getFechaFin();
-        this.comentario = p.getComentario();
-        this.codFuncionalidad = p.getCodFuncionalidad();
-    }
-
     public Integer getIdProyecto() {
         return idProyecto;
     }

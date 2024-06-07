@@ -11,16 +11,9 @@ import org.springframework.data.repository.query.Param;
 
 @Repository
 public interface ProyectoRepository extends JpaRepository<Proyecto, Integer> {
-    @Query("SELECT p FROM Proyecto p WHERE " +
-           "(:id_cliente = -1 OR p.idCliente = :idCliente) OR " +
-           "(:id_ingeniero = -1 OR p.idIngeniero = :idIngeniero) OR " +
-           "(:id_tecnico = -1 OR p.idTecnico = :idTecnico) OR " +
-           "(:id_comercial = -1 OR p.idComercial = :idComercial) OR " +
-           "(:fecha_inicio = '' OR p.fechaInicio = :fechaInicio) OR " +
-           "(:fecha_fin = '' OR p.fechaFin = :fechaFin)")
-    List<Proyecto> findByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercialOrFechaInicioOrFechaFin(int idCliente, int idIngeniero, int idTecnico, int idComercial,String fechaInicio, String fechaFin);
+    List<Proyecto> findByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercialOrFechaInicioOrFechaFin(Integer idCliente, Integer idIngeniero, Integer idTecnico, Integer idComercial,String fechaInicio, String fechaFin);
     
     @Query(value="delete from proyecto where id_proyecto = :id_proyecto", nativeQuery =true)
-     void deleteproyecto(@Param("id_proyecto") int id_proyecto);
+     void deleteproyecto(@Param("id_proyecto") Integer id_proyecto);
      
 }

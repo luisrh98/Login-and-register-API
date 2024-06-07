@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "proyecto", uniqueConstraints = @UniqueConstraint(columnNames = "id_proyecto"))
 public class Proyecto {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_proyecto")

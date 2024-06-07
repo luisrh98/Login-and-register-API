@@ -43,21 +43,21 @@ public class ProyectoController {
     }
 
     @PostMapping("/borrar/{id}")
-    public String eliminarProyecto(@PathVariable("id") int id_proyecto) {
+    public String eliminarProyecto(@PathVariable("id") Integer id_proyecto) {
         proyectoService.eliminarProyecto(id_proyecto);
         return "redirect:/proyecto";
     }
 
     @GetMapping("/buscar")
     public String searchProyecto(
-            @RequestParam(required = false) Integer id_cliente,
-            @RequestParam(required = false) Integer id_ingeniero,
-            @RequestParam(required = false) Integer id_tecnico,
-            @RequestParam(required = false) Integer id_comercial,
-            @RequestParam(required = false) String fecha_inicio,
-            @RequestParam(required = false) String fecha_fin,
+            @RequestParam(required = false) Integer idCliente,
+            @RequestParam(required = false) Integer idIngeniero,
+            @RequestParam(required = false) Integer idTecnico,
+            @RequestParam(required = false) Integer idComercial,
+            @RequestParam(required = false) String fechaInicio,
+            @RequestParam(required = false) String fechaFin,
             Model model) {
-        List<Proyecto> proyectos = proyectoService.getProyectoByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercial(id_cliente, id_ingeniero, id_tecnico, id_comercial, fecha_inicio, fecha_fin);
+        List<Proyecto> proyectos = proyectoService.getProyectoByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercial(idCliente, idIngeniero, idTecnico, idComercial, fechaInicio, fechaFin);
         model.addAttribute("proyectos", proyectos);  // Cambia el nombre del atributo a "proyectos"
         model.addAttribute("proyecto", new ProyectoDto());
         return "proyecto";

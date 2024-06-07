@@ -11,11 +11,11 @@ public interface ProyectoService {
     
     Proyecto saveProyecto(ProyectoDto ProyectoDto);
     
-    void eliminarProyecto(int id_proyecto);
+    void eliminarProyecto(Integer id_proyecto);
     
-    Proyecto obtenerProyectoPorId(int id_proyecto);
+    Proyecto obtenerProyectoPorId(Integer id_proyecto);
     
-    List<Proyecto> getProyectoByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercial(int idCliente, int idIngeniero, int idTecnico, int idComercial,String fechaInicio,String fechaFin);
+    List<Proyecto> getProyectoByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercial(Integer idCliente, Integer idIngeniero, Integer idTecnico, Integer idComercial,String fechaInicio,String fechaFin);
     
     Proyecto update(Proyecto proyecto);
 }
