@@ -8,105 +8,119 @@ public class Proyecto {
 
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_proyecto;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_proyecto")
+    private Integer idProyecto;
+
+    @Column(name = "id_cliente")
+    private Integer idCliente;
+
+    @Column(name = "id_ingeniero")
+    private Integer idIngeniero;
+
+    @Column(name = "id_tecnico")
+    private Integer idTecnico;
+
+    @Column(name = "id_comercial")
+    private Integer idComercial;
+
+    @Column(name = "fecha_inicio")
+    private String fechaInicio;
+
+    @Column(name = "fecha_fin")
+    private String fechaFin;
     
-    private int id_cliente;
-    private int id_ingeniero;
-    private int id_tecnico;
-    private int id_comercial;
-    private String fecha_inicio;
-    private String fecha_fin;
     private String comentario;
-    private int cod_funcionalidad;
+    
+    @Column(name = "cod_funcionalidad")
+    private String codFuncionalidad;
 
     public Proyecto() {
         super();
     }
 
-    public Proyecto(int id_cliente, int id_ingeniero, int id_tecnico, int id_comercial, String fecha_inicio, String fecha_fin, String comentario, int cod_funcionalidad) {
-        this.id_cliente = id_cliente;
-        this.id_ingeniero = id_ingeniero;
-        this.id_tecnico = id_tecnico;
-        this.id_comercial = id_comercial;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_fin = fecha_fin;
+    public Proyecto(Integer idCliente, Integer idIngeniero, Integer idTecnico, Integer idComercial, String fechaInicio, String fechaFin, String comentario, String codFuncionalidad) {
+        this.idCliente = idCliente;
+        this.idIngeniero = idIngeniero;
+        this.idTecnico = idTecnico;
+        this.idComercial = idComercial;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.comentario = comentario;
-        this.cod_funcionalidad = cod_funcionalidad;
+        this.codFuncionalidad = codFuncionalidad;
     }
 
-    public int getId_proyecto() {
-        return id_proyecto;
+    public Integer getIdProyecto() {
+        return idProyecto;
     }
 
-    public void setId_proyecto(int id_proyecto) {
-        this.id_proyecto = id_proyecto;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public Integer getIdIngeniero() {
+        return idIngeniero;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public Integer getIdTecnico() {
+        return idTecnico;
     }
 
-    public String getFecha_inicio() {
-        return fecha_inicio;
+    public Integer getIdComercial() {
+        return idComercial;
     }
 
-    public void setFecha_inicio(String fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public String getFechaInicio() {
+        return fechaInicio;
     }
 
-    public String getFecha_fin() {
-        return fecha_fin;
-    }
-
-    public void setFecha_fin(String fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public String getFechaFin() {
+        return fechaFin;
     }
 
     public String getComentario() {
         return comentario;
     }
 
+    public String getCodFuncionalidad() {
+        return codFuncionalidad;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public void setIdIngeniero(Integer idIngeniero) {
+        this.idIngeniero = idIngeniero;
+    }
+
+    public void setIdTecnico(Integer idTecnico) {
+        this.idTecnico = idTecnico;
+    }
+
+    public void setIdComercial(Integer idComercial) {
+        this.idComercial = idComercial;
+    }
+
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
 
-    public int getId_ingeniero() {
-        return id_ingeniero;
+    public void setCodFuncionalidad(String codFuncionalidad) {
+        this.codFuncionalidad = codFuncionalidad;
     }
+    
+    
 
-    public void setId_ingeniero(int id_ingeniero) {
-        this.id_ingeniero = id_ingeniero;
-    }
-
-    public int getId_tecnico() {
-        return id_tecnico;
-    }
-
-    public void setId_tecnico(int id_tecnico) {
-        this.id_tecnico = id_tecnico;
-    }
-
-    public int getId_comercial() {
-        return id_comercial;
-    }
-
-    public void setId_comercial(int id_comercial) {
-        this.id_comercial = id_comercial;
-    }
-
-    public int getCod_funcionalidad() {
-        return cod_funcionalidad;
-    }
-
-    public void setCod_funcionalidad(int cod_funcionalidad) {
-        this.cod_funcionalidad = cod_funcionalidad;
-    }
-
+    
 
     
     

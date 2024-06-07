@@ -13,8 +13,9 @@ public interface ProyectoService {
     
     void eliminarProyecto(int id_proyecto);
     
-    Proyecto obtenerProyectoPorId(int proyecto);
+    Proyecto obtenerProyectoPorId(int id_proyecto);
     
-    List<Proyecto> getProyectoById_clienteOrId_ingenieroOrId_tecnicoOrId_comercial(int id_proyecto,int id_cliente, int id_ingeniero, int id_tecnico, int id_comercial,int fecha_inicio,int fecha_fin);
+    List<Proyecto> getProyectoByIdClienteOrIdIngenieroOrIdTecnicoOrIdComercial(int idCliente, int idIngeniero, int idTecnico, int idComercial,String fechaInicio,String fechaFin);
+    
     Proyecto update(Proyecto proyecto);
 }

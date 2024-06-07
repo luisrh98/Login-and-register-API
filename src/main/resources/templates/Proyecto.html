@@ -302,25 +302,25 @@
                 <h2>Panel de proyecto</h2>
                 <h1>Proyectos</h1>
                 <form class="form" id="form_proyecto" th:object="${proyecto}" th:action="@{/proyecto}" method="post">
-                    <input type="text" th:field="*{id_proyecto}" placeholder="id_proyecto"/>
-                    <input type="text" th:field="*{id_cliente}" placeholder="id_cliente"/>
-                    <input type="text" th:field="*{id_tecnico}" placeholder="id_tecnico"/>
-                    <input type="text" th:field="*{id_comercial}" placeholder="id_comercial"/>
-                    <input type="text" th:field="*{fecha_inicio}" placeholder="fecha_inicio"/>
-                    <input type="text" th:field="*{fecha_fin}" placeholder="fecha_fin"/>
+                    <input type="text" th:field="*{idCliente}" placeholder="id_cliente"/>
+                    <input type="text" th:field="*{idIngeniero}" placeholder="id_ingeniero"/>
+                    <input type="text" th:field="*{idTecnico}" placeholder="id_tecnico"/>
+                    <input type="text" th:field="*{idComercial}" placeholder="id_comercial"/>
+                    <input type="text" th:field="*{fechaInicio}" placeholder="fecha_inicio"/>
+                    <input type="text" th:field="*{fechaFin}" placeholder="fecha_fin"/>
                     <input type="text" th:field="*{comentario}" placeholder="comentario"/>
-                    <input type="text" th:field="*{id_funcionalidad}" placeholder="id_funcionalidad"/>
+                    <input type="text" th:field="*{codFuncionalidad}" placeholder="codFuncionalidad"/>
                     <button class="button-guardar" type="submit">Guardar</button>
                 </form>
 
                 <h2>Buscar Proyecto</h2>
                 <form class="form" th:action="@{/proyecto/buscar}" method="get" th:object="${proyecto}">
-                    <input type="text" id="buscar" name="id_proyecto" placeholder="id_proyecto"/>
-                    <input type="text" id="buscar" name="id_cliente" placeholder="id_cliente"/>
-                    <input type="text" id="buscar" name="id_tecnico" placeholder="id_tecnico"/>
-                    <input type="text" id="buscar" name="id_comercial" placeholder="id_comercial"/>
-                    <input type="text" id="buscar" name="fecha_inicio" placeholder="fecha_inicio"/>
-                    <input type="text" id="buscar" name="fecha_fin" placeholder="fecha_fin"/>
+                    <input type="text" id="buscar" name="idProyecto" placeholder="id_proyecto"/>
+                    <input type="text" id="buscar" name="idCliente" placeholder="id_cliente"/>
+                    <input type="text" id="buscar" name="idTecnico" placeholder="id_tecnico"/>
+                    <input type="text" id="buscar" name="idComercial" placeholder="id_comercial"/>
+                    <input type="text" id="buscar" name="fechaInicio" placeholder="fecha_inicio"/>
+                    <input type="text" id="buscar" name="fechaFin" placeholder="fecha_fin"/>
                     <button class="button-guardar" type="submit">Buscar</button>
                 </form>
 
@@ -344,19 +344,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="proyecto : ${proyecto}">
-                            <td><span th:text="${proyecto.id_proyecto}"></span></td>
-                            <td><span th:text="${proyecto.id_cliente}"></span></td>
-                            <td><span th:text="${proyecto.Id_ingeniero}"></span></td>
-                            <td> <span th:text="${proyecto.Id_tenico}"></span></td>
-                            <td> <span th:text="${proyecto.Id_comercial}"></span></td>
-                            <td> <span th:text="${proyecto.fecha_inicio}"></span></td>
-                            <td> <span th:text="${proyecto.fecha_fin}"></span></td>
-                            <td> <span th:text="${proyecto.comentario}"></span></td>
-                            <td> <span th:text="${proyecto.cod_funcionalidad}"></span></td>
-                            <td> <span><button class="button-actualizar" data-id="${proyecto.id_proyecto}">Actualizar</button></span></td>
+                        <tr th:each="proyecto : ${proyectos}">
+                            <td><span th:text="${proyecto.idProyecto}"></span></td>
+                            <td><span th:text="${proyecto.idCliente}"></span></td>
+                            <td><span th:text="${proyecto.idIngeniero}"></span></td>
+                            <td><span th:text="${proyecto.idTecnico}"></span></td>
+                            <td><span th:text="${proyecto.idComercial}"></span></td>
+                            <td><span th:text="${proyecto.fechaInicio}"></span></td>
+                            <td><span th:text="${proyecto.fechaFin}"></span></td>
+                            <td><span th:text="${proyecto.comentario}"></span></td>
+                            <td><span th:text="${proyecto.codFuncionalidad}"></span></td>
+                            <td><button class="button-actualizar" data-id="${proyecto.idProyecto}">Actualizar</button></td>
                             <td>
-                                <form class="form-botones" th:action="@{/proyecto/borrar/{id}(id=${proyecto.id_proyecto})}" method="post">
+                                <form th:action="@{/proyecto/borrar/{id}(id=${proyecto.idProyecto})}" method="post">
                                     <button class="button-guardar" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este proyecto?')">Borrar</button>
                                 </form>
                             </td>
@@ -422,15 +422,15 @@
             });
             function openModal(cliente) {
                 console.log("Opening modal with proyecto:", proyecto); // Debugging line
-                document.getElementById("updateId").value = proyecto.id_proyecto;
-                document.getElementById("updateid_cliente").value = proyecto.id_cliente;
-                document.getElementById("updateId_ingeniero").value = proyecto.id_ingeniero;
-                document.getElementById("updateId_tenico").value = proyecto.id_tecnico;
-                document.getElementById("updateId_comercial").value = proyecto.id_comercial;
-                document.getElementById("updatefecha_inicio").value = proyecto.fecha_inicio;
-                document.getElementById("updatefecha_fin").value = proyecto.fecha_fin;
+                document.getElementById("updateId").value = proyecto.idProyecto;
+                document.getElementById("updateid_cliente").value = proyecto.idCliente;
+                document.getElementById("updateId_ingeniero").value = proyecto.idIngeniero;
+                document.getElementById("updateId_tenico").value = proyecto.idTecnico;
+                document.getElementById("updateId_comercial").value = proyecto.idComercial;
+                document.getElementById("updatefecha_inicio").value = proyecto.fechaInicio;
+                document.getElementById("updatefecha_fin").value = proyecto.fechaFin;
                 document.getElementById("updatecomentario").value = proyecto.comentario;
-                document.getElementById("updatecod_funcionalidad").value = proyecto.cod_funcionalidad;
+                document.getElementById("updatecod_funcionalidad").value = proyecto.codFuncionalidad;
                 document.getElementById("updateModal").style.display = "block";
             }
 
@@ -442,14 +442,14 @@
                 button.addEventListener('click', function () {
                     const row = this.parentElement.parentElement.parentElement;
                     const proyecto = {
-                        id_proyecto: row.cells[0].innerText,
-                        id_cliente: row.cells[1].innerText,
-                        id_ingeniero: row.cells[2].innerText,
-                        id_comercial: row.cells[3].innerText,
-                        fecha_inicio: row.cells[4].innerText,
-                        fecha_fin: row.cells[5].innerText,
+                        idProyecto: row.cells[0].innerText,
+                        idCliente: row.cells[1].innerText,
+                        idIngeniero: row.cells[2].innerText,
+                        idComercial: row.cells[3].innerText,
+                        fechaInicio: row.cells[4].innerText,
+                        fechaFin: row.cells[5].innerText,
                         comentario: row.cells[6].innerText,
-                        cod_funcionalidad: row.cells[7].innerText
+                        codFuncionalidad: row.cells[7].innerText
                     };
                     openModal(proyecto);
                 });

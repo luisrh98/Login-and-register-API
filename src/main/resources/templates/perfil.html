@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Título de tu página</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            header {
+                background-color: #005571;
+                color: #fff;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 10vh;
+                padding-left: 5%;
+                padding-right: 5%;
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+
+            /* Estilos para el modal */
+            .modal {
+                display: none; /* Oculto por defecto */
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.4); /* Color de fondo */
+            }
+
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto; /* Centrando el modal */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 500px; /* Ancho máximo */
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            /*Fin ventana modal*/
+
+            header h1 {
+                font-size: 15px;
+            }
+
+            .social {
+                align-items: center;
+            }
+
+            .social-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .social a {
+                color: #fff;
+                margin-right: 6px;
+                transition: color 0.5s;
+            }
+
+            .social a i:hover {
+                color: #0087b4;
+            }
+
+            .fa-youtube,
+            .fa-twitter,
+            .fa-instagram,
+            .fa-linkedin,
+            .fa-facebook {
+                padding: 5px;
+                color: #fff;
+                border: 2px solid rgb(255, 255, 255);
+                border-radius: 100px;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -20%;
+                width: 20%;
+                height: 100%;
+                background-color: #f2f2f2;
+                padding: 20px;
+                text-align: left;
+                transition: left 0.5s;
+            }
+
+            #menu ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            #menu ul li {
+                text-align: center;
+                padding: 12px;
+                box-shadow: 0 0 3px;
+                margin-bottom: 10px;
+            }
+
+            .main-content {
+                width: 100%;
+                box-shadow: 0 0 3px;
+                display: flex;
+                flex: 1;
+            }
+
+            .main {
+                flex: 1;
+                text-align: center;
+                box-shadow: 0 0 3px;
+                overflow-y: auto;
+                padding: 10px;
+            }
+
+            .tabla {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .aside {
+                padding: 20px;
+                box-shadow: 0 0 3px;
+                text-align: center;
+                background-color: #f9f9f9;
+                width: 12%;
+            }
+
+            footer {
+                display: none;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                background-color: #005571;
+                color: #fff;
+                text-align: center;
+                align-items: flex-start;
+            }
+
+            .address-name {
+                text-decoration: underline;
+            }
+
+            .informacion {
+                box-shadow: 0 0 3px;
+                width: 70%;
+            }
+
+            .localizacion {
+                width: calc(30% - 20px);
+                background-color: #E86000;
+            }
+
+            .menu-btn {
+                position: absolute;
+                left: 6px;
+                top: 20px;
+                background-color: transparent;
+                padding-top: 3px;
+                color: #000000;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                transition: left 0.5s;
+                border: 2px solid black;
+                border-radius: 3px;
+            }
+
+            /* CSS formulario */
+            label {
+                display: block;
+                margin-bottom: 8px;
+                color: #555;
+            }
+
+            input[type="text"],
+            input[type="tel"],
+            input[type="email"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .button-guardar, .button-actualizar {
+                width: 100%;
+                padding: 10px;
+                background-color: #007BFF;
+                border: none;
+                border-radius: 4px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            .form {
+                background-color: #fff;
+                padding: 20px 40px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <a href="https://beteling.es/" ><img src="images/Logo-GRUPO-BETELING_inv_HZ_web.webp" alt="70" width="170"></a>
+            <h1>GRUPO BETELING</h1>
+            <div class="social">
+                <a aria-label="FACEBOOK" class="theme-dark facebook"
+                   href="https://www.facebook.com/profile.php?id=100068651401613" target="_blank"><i
+                        class="fab fa-facebook"></i></a>
+                <a aria-label="INSTAGRAM" class="theme-dark instagram" href="https://www.instagram.com/grupo_beteling/"
+                   target="_blank"><i class="fab fa-instagram"></i></a>
+                <a aria-label="LINKEDIN" class="theme-dark linkedin"
+                   href="https://www.linkedin.com/company/beteling-consultoria-e-ingenieria-sl/" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a aria-label="TWITTER" class="theme-dark twitter" href="https://twitter.com/beteling" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a aria-label="YOUTUBE" class="theme-dark youtube" href="https://www.youtube.com/@GrupoBeteling"
+                   target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </header>
+        <nav id="menu">
+            <h2>¡Bienvenido</h2>
+            <a href="#"><img src="" alt="">foto</a>
+            <ul>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="/admin-page">Inicio</a></li>
+                <li><a href="#">Sobre Nosotros</a></li>
+            </ul>
+            <span sec:authorize="isAuthenticated">
+                <a th:href="@{/logout}">
+                    Logout
+
+                </a>
+            </span>
+        </nav>
+        <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+
+        <div class="main-content">
+            <div class="main">
+                <h2>Perfil de usuario</h2>
+                <h1>Perfil</h1>
+                <div class="form" th:if="${usuario != null}">
+                    <form th:object="${usuario}" th:action="@{/perfil/actualizar}" method="post" >
+                        <label for="usuario">Usuario</label>
+                        <input type="text" id="usuario" name="usuario" th:value="${usuario.usuario}" placeholder="Usuario" required>
+
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" th:value="${usuario.correo}" placeholder="Correo electrónico" required>
+
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" th:value="${usuario.telefono}" placeholder="Teléfono" required>
+
+                        <button type="submit" class="button-guardar">Guardar cambios</button>
+                    </form>
+                </div>
+                <div th:unless="${usuario != null}">
+                    <p>El objeto usuario es nulo.</p>
+
+                </div>
+            </div>
+
+            <script>
+                function toggleMenu() {
+                    var nav = document.getElementById("menu");
+                    var btn = document.querySelector(".menu-btn");
+                    if (nav.style.left === "0px") {
+                        nav.style.left = "-20%";
+                        btn.style.left = "6px";
+                    } else {
+                        nav.style.left = "0";
+                        btn.style.left = "calc(20% + 6px)";
+                    }
+                }
+
+            </script>
+    </body>
+</html>
